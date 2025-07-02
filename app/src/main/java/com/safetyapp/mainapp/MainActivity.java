@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button1);
         EditText editText1 = findViewById(R.id.editText1);
-cd
+
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
