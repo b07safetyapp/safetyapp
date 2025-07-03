@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,55 +7,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MenuFragment"
-    android:orientation="vertical"
+    android:orientation="horizontal"
+    android:gravity="center"
     >
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="118dp"
-        android:layout_height="111dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:text="?"
+        android:textSize="8dp"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        />
     <Button
         android:id="@+id/button2"
-        android:layout_width="30dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button1"
-        app:layout_constraintHorizontal_bias="0.64"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="30dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.327"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:text="?"
+        android:textSize="8dp"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        />
     <Button
         android:id="@+id/button3"
-        android:layout_width="30dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.338"
-        app:layout_constraintStart_toEndOf="@+id/button1"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:text="Home"
+        android:textSize="8dp"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        />
     <Button
         android:id="@+id/button4"
-        android:layout_width="30dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="?"
+        android:textSize="8dp"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        />
+
+    <Button
+        android:id="@+id/button5"
+        android:text="?"
+        android:textSize="8dp"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        />
+
+</LinearLayout>
