@@ -4,10 +4,9 @@ import android.content.Context;
 import org.json.*;
 import java.util.*;
 import java.io.*;
-import com.safetyapp.mainapp.Question;
 public class QuestionLoader {
     private static Map<Integer, JSONObject> loadFromJSON(Context ctx) throws IOException, JSONException {
-        /**
+        /*
          * Load the raw JSON definitions from assets/questions.json
          * @param ctx the Android context, needed to open the asset
          * @return a Map from question ID → its raw JSONObject definition
