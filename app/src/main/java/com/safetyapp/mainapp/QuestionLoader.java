@@ -7,13 +7,13 @@ import java.io.*;
 public class QuestionLoader {
     private static Map<Integer, JSONObject> loadFromJSON(Context ctx) throws IOException, JSONException {
         /*
-         * Load the raw JSON definitions from assets/questions.json
+         * Load the raw JSON definitions from raw/questions.json
          * @param ctx the Android context, needed to open the asset
          * @return a Map from question ID → its raw JSONObject definition
          * @throws IOException   if the file can’t be read
          * @throws JSONException if parsing fails
          */
-        InputStream IS = ctx.getAssets().open("res/assets/questions.json");
+        InputStream IS = ctx.getAssets().open("res/raw/questions.json");
         BufferedReader BR = new BufferedReader(new InputStreamReader(IS));
         StringBuilder SB = new StringBuilder();
         String line;
