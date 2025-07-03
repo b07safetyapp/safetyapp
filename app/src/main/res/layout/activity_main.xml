@@ -12,23 +12,35 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This page is for routing..."
+        android:text="This is the default page. local storage for sessions not yet impl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.15"></TextView>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:id="@+id/fragment_box"
+    <Button
+        android:id="@+id/usersetup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="gousersetup"
+        android:text="GO TO USER SETUP PAGE (DEBUGGING)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.651">
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
 
+    <Button
+    android:id="@+id/homepage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:onClick="gohomepage"
+    android:text="GO TO HOME PAGE (DEBUGGING)"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
