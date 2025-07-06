@@ -12,7 +12,7 @@ import com.safetyapp.mainapp.R;                          // 8. Resource referenc
 public class QuestionnaireActivity extends AppCompatActivity { //11. Activity class
 
     private QuestionnaireViewModel viewModel;           //12. Reference to ViewModel
-    private QuestionsAdapter adapter;                   //13. Adapter instance
+    private QuestionAdapter adapter;                   //13. Adapter instance
 
     @Override                                         //14. Override lifecycle method
     protected void onCreate(@Nullable Bundle savedInstanceState) { //15. onCreate
@@ -36,7 +36,7 @@ public class QuestionnaireActivity extends AppCompatActivity { //11. Activity cl
         //23. Observe questions LiveData
         viewModel.getQuestions().observe(this, questions -> {
             if (adapter == null) {                     //24. First time setup
-                adapter = new QuestionsAdapter(questions,
+                adapter = new QuestionAdapter(questions,
                         viewModel.getAnswers().getValue(), //25. Initial answers
                         (id, ans) -> viewModel.saveAnswer(id, ans)); //26. Save callback
                 recyclerView.setAdapter(adapter);     //27. Bind adapter
