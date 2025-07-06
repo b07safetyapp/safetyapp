@@ -54,7 +54,7 @@ public class TEMPQuestionLoader {
                 for (int i=0; i<A.length(); i++){
                     options.add(A.getString(i));
                 }
-                // handle cases where type is
+                // handle cases where type is not multi elsewhere
             }
             Question Q = new Question(id, type, label, options);
             map.put(id, Q);
