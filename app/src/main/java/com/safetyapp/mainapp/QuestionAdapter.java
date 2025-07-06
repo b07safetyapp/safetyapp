@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class QuestionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> { // 18. Adapter class for RecyclerView
+public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> { // 18. Adapter class for RecyclerView
 
     public interface AnswerListener { // 20. Listener to propagate answers
         void onAnswer(String questionId, Object answer); // 21. Callback with question ID and answer

@@ -9,7 +9,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_activity);
+        setContentView(R.layout.activity_home);
         setTitle("Home Activity");
         Fragment myfragment = new MenuFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_box, myfragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
