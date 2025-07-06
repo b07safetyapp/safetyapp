@@ -45,7 +45,7 @@ public class TEMPQuestionLoader {
         for (Map.Entry<Integer, JSONObject> entry : stuff.entrySet()){
             JSONObject v = entry.getValue();
             String type = v.getString("type");
-            String label = v.getString("value");
+            String label = v.getString("label");
             int id = entry.getKey();
             List<String> options = null;
             if (v.has("options")){
@@ -54,6 +54,7 @@ public class TEMPQuestionLoader {
                 for (int i=0; i<A.length(); i++){
                     options.add(A.getString(i));
                 }
+                // handle cases where type is
             }
             Question Q = new Question(id, type, label, options);
             map.put(id, Q);
