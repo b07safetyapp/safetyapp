@@ -4,14 +4,22 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
+/*import androidx.security.crypto.EncryptedSharedPreferences;
+import androidx.security.crypto.MasterKey;
+
+import java.io.IOException;
+import java.security.GeneralSecurityException;*/
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 public class LoginActivity extends Activity{
     private static final String TAG = "EmailPassword";
     private FirebaseAuth mAuth;
