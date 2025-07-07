@@ -7,6 +7,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Default Page");
         // check the login
+        QuestionPresenter mypresenter = new QuestionPresenter();
 
 
     }

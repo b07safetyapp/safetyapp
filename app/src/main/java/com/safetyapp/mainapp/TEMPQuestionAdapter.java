@@ -1,3 +1,4 @@
+/*
 package com.safetyapp.mainapp; // 1. Package where this adapter lives
 
 import android.annotation.SuppressLint;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> { // 18. Adapter class for RecyclerView
+public class TEMPQuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> { // 18. Adapter class for RecyclerView
 
     public interface AnswerListener { // 20. Listener to propagate answers
         void onAnswer(String questionId, Object answer); // 21. Callback with question ID and answer
@@ -30,7 +31,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @SuppressWarnings("FieldMayBeFinal")
     private AnswerListener listener; // 24. Listener instance
 
-    public QuestionsAdapter(List<Question> questions, Map<String, Object> answers, AnswerListener listener) { // 25. Constructor
+    public TEMPQuestionAdapter(List<Question> questions, Map<String, Object> answers, AnswerListener listener) { // 25. Constructor
         this.questions = questions; // 26. Initialize questions
         this.answers = answers; // 27. Initialize answers
         this.listener = listener; // 28. Initialize listener
@@ -207,3 +208,5 @@ public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @Override public void afterTextChanged(android.text.Editable s) {} // 122. No-op
     }
 }
+
+ */
