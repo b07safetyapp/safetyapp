@@ -49,4 +49,26 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="end"
+            android:background="@drawable/btn_circle_red"
+            android:text="Exit"
+            android:textSize="10dp"
+            app:backgroundTint="@null" />
+
+
+    </LinearLayout>
+
+
+
+
 </LinearLayout>
