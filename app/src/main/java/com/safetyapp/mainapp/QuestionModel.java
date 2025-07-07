@@ -18,7 +18,6 @@ public class QuestionModel {
         this.label = label;
         this.options = options;
         this.next = next;
-        Log.d("this is", next.toString());
     }
 
     public String getId(){ return id; }

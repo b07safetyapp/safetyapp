@@ -22,7 +22,9 @@ import java.util.Iterator;
 public class QuestionPresenter {
     private HashMap<String, QuestionModel> questions = new HashMap<>();
     private ArrayList<String> currentquestions = new ArrayList<>();
+    private ArrayList<String> currentchoices = new ArrayList<>();
     private AppContext appcontext;
+    private JSONObject root;
 
     public QuestionPresenter(){
         // get context
@@ -33,6 +35,42 @@ public class QuestionPresenter {
             System.err.println(e);
         }
     }
+
+    private QuestionModel parsequestion(String id) throws IOException, JSONException{
+        JSONObject questionsObj = this.root.getJSONObject("items");
+        JSONObject currquestionjson = questionsObj.getJSONObject(id);
+        String label = currquestionjson.getString("label");
+        String type = currquestionjson.getString("type");
+        ArrayList<String> options = new ArrayList<>();
+        if (type.equals("multi")){
+            JSONArray jArray = currquestionjson.getJSONArray("options");
+            if (jArray != null) {
+                for (int i=0;i<jArray.length();i++){
+                    options.add(jArray.getString(i));
+                }
+            }
+        }else{
+            options = null;
+        }
+        // add next
+        HashMap<String, String> next = new HashMap<>();
+        if (!type.equals("end")) {
+            JSONObject nextJson = currquestionjson.getJSONObject("next");
+            // create hashmap from json object
+            Iterator<String> nextkeys = nextJson.keys();
+            while (nextkeys.hasNext()) {
+                String nextkey = (String) nextkeys.next();
+                String nextvalue = nextJson.getString(nextkey);
+                next.put(nextkey, nextvalue);
+            }
+        }
+        else{
+            next = null;
+        }
+        return new QuestionModel(id,type,label,options, next);
+    }
+
+
     public void loadquestionsfromjson() throws IOException, JSONException{
         // open the resource file
         Context ctx = appcontext.getContext();
@@ -47,60 +85,50 @@ public class QuestionPresenter {
             SB.append(line);
         }
         BR.close(); // prevent leaks
-        JSONObject root = new JSONObject(SB.toString());
-        JSONObject questionsObj = root.getJSONObject("items");
+        root = new JSONObject(SB.toString());
+        JSONObject questionsObj = this.root.getJSONObject("items");
         // add the starting node to current questions
-        currentquestions.add(root.getString("start"));
+        this.addquestion(this.root.getString("start"));
         // add all questions into the map
         Iterator<String> keys = questionsObj.keys();
         while(keys.hasNext()) {
             String id = keys.next();
-            // create a new question object
-            JSONObject currquestionjson = questionsObj.getJSONObject(id);
-            String label = currquestionjson.getString("label");
-            String type = currquestionjson.getString("type");
-            ArrayList<String> options = new ArrayList<>();
-            if (type.equals("multi")){
-                JSONArray jArray = currquestionjson.getJSONArray("options");
-                if (jArray != null) {
-                    for (int i=0;i<jArray.length();i++){
-                        options.add(jArray.getString(i));
-                    }
-                }
-            }else{
-                options = null;
-            }
-            // add next
-            HashMap<String, String> next = new HashMap<>();
-            if (!type.equals("end")) {
-                JSONObject nextJson = currquestionjson.getJSONObject("next");
-                // create hashmap from json object
-                Iterator<String> nextkeys = nextJson.keys();
-                while (nextkeys.hasNext()) {
-                    String nextkey = (String) nextkeys.next();
-                    String nextvalue = nextJson.getString(nextkey);
-                    next.put(nextkey, nextvalue);
-                }
-            }
-            else{
-                next = null;
-            }
-            QuestionModel tempquestion = new QuestionModel(id,type,label,options, next);
-            // add to the hashmap
-            questions.put(id, tempquestion);
-
-            // debugging log all items
-            for (String key : questions.keySet()){
-                Log.d("key: ", key);
-                Log.d("> id:", questions.get(key).getId());
-                Log.d("> type:", questions.get(key).getType());
-                Log.d("> label:", questions.get(key).getLabel());
-                Log.d("> options:", questions.get(key).getOptions().get(0));
-                Log.d("> next:", questions.get(key).getNext().toString());
-            }
-
-
+            questions.put(id, parsequestion(id));
         }
+        // debugging log all items
+        for (String key : questions.keySet()){
+            Log.d("key: ", key);
+            Log.d("> id:", questions.get(key).getId());
+            Log.d("> type:", questions.get(key).getType());
+            Log.d("> label:", questions.get(key).getLabel());
+            Log.d("> options:", questions.get(key).getOptions().get(0));
+            Log.d("> next:", questions.get(key).getNext().toString());
+        }
+    }
+
+    public QuestionChoiceModel getcurrentquestion(){
+        String currentid = currentquestions.get(currentquestions.size() - 1);
+        String currentchoice = currentchoices.get(currentchoices.size() - 1);
+        QuestionChoiceModel retchoicemodel = new QuestionChoiceModel(currentid, questions.get(currentid).getLabel(), questions.get(currentid).getOptions());
+        retchoicemodel.setChoice(currentchoice);
+        // set the return to the current last question
+        return retchoicemodel;
+    }
+
+    public void addquestion(String id){
+        currentquestions.add(id);
+        currentchoices.add("");
+    }
+
+    public void changechoice(String id, String choice){
+        //find the id
+        int index = currentquestions.indexOf(id);
+        // remove all that is greater than id
+        for (int i = currentquestions.size(); i > index; i--){
+            currentchoices.remove(i);
+            currentquestions.remove(i);
+        }
+        this.currentchoices.set(index, choice);
     }
 
 }

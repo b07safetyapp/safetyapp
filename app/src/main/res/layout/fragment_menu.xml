@@ -19,14 +19,16 @@
 
     <Button
         android:id="@+id/button2"
+        android:onClick="goquestionaire"
         android:layout_width="60dp"
         android:layout_height="70dp"
         android:layout_margin="10dp"
-        android:text="?"
+        android:text="Questionaire"
         android:textSize="8dp" />
 
     <Button
         android:id="@+id/button3"
+        android:onClick="gohomepage"
         android:layout_width="60dp"
         android:layout_height="70dp"
         android:layout_margin="10dp"
