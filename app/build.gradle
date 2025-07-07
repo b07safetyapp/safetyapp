@@ -5,7 +5,9 @@ plugins {
 android {
     namespace 'com.safetyapp.mainapp'
     compileSdk 35
-
+    aaptOptions {
+        noCompress "txt", "json", "html" // whatever file types you have
+    }
     defaultConfig {
         applicationId "com.safetyapp.mainapp"
         minSdk 24

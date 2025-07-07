@@ -1,0 +1,43 @@
+{
+  "start": "q1",
+  "items": {
+    "q1": {
+      "type": "multi",
+      "label": "Question 1",
+      "options": ["option 1", "option 2", "option 3"],
+      "next": {
+        "option 1": "q2",
+        "option 2": "q3",
+        "option 3": "q4"
+      }
+    },
+    "q2": {
+      "type": "multi",
+      "label": "Question 2",
+      "options": ["leave"],
+      "next": {
+        "leave": "leave"
+      }
+    },
+    "q3": {
+      "type": "multi",
+      "label": "Question 3",
+      "options": ["leave"],
+      "next": {
+        "leave": "leave"
+      }
+    },
+    "q4": {
+      "type": "multi",
+      "label": "Question 4",
+      "options": ["leave"],
+      "next": {
+        "leave": "leave"
+      }
+    },
+    "leave": {
+      "type": "end",
+      "label": "Leave"
+    }
+  }
+}
