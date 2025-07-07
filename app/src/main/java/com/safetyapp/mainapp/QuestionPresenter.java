@@ -77,9 +77,9 @@ public class QuestionPresenter {
                 // create hashmap from json object
                 Iterator<String> nextkeys = nextJson.keys();
                 while (nextkeys.hasNext()) {
-                    String key = (String) keys.next();
-                    String value = nextJson.getString(key);
-                    next.put(key, value);
+                    String nextkey = (String) nextkeys.next();
+                    String nextvalue = nextJson.getString(nextkey);
+                    next.put(nextkey, nextvalue);
                 }
             }
             else{
