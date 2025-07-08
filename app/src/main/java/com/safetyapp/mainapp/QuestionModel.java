@@ -2,6 +2,7 @@ package com.safetyapp.mainapp;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 public class QuestionModel {
@@ -9,10 +10,10 @@ public class QuestionModel {
     private final String type; // question type
     private final String label;
     @SuppressWarnings("FieldMayBeFinal") // can java shut up pls
-    private List<String> options; // if there are any
+    private ArrayList<String> options; // if there are any
     private HashMap<String, String> next; // if there are any
 
-    public QuestionModel(String id, String type, String label, List<String> options, HashMap<String, String> next) {
+    public QuestionModel(String id, String type, String label, ArrayList<String> options, HashMap<String, String> next) {
         this.id = id;
         this.type = type;
         this.label = label;
@@ -23,7 +24,7 @@ public class QuestionModel {
     public String getId(){ return id; }
     public String getType(){ return type; }
     public String getLabel(){ return label; }
-    public List<String> getOptions(){ return options; }
+    public ArrayList<String> getOptions(){ return options; }
     public HashMap<String, String> getNext(){ return next; }
 
 }
