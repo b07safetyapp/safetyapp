@@ -21,8 +21,8 @@ import java.util.Iterator;
 
 public class QuestionPresenter {
     private static HashMap<String, QuestionModel> questions = new HashMap<>();
-    private static ArrayList<String> currentquestions = new ArrayList<>();
-    private static ArrayList<String> currentchoices = new ArrayList<>();
+    public static ArrayList<String> currentquestions = new ArrayList<>();
+    public static ArrayList<String> currentchoices = new ArrayList<>();
     private AppContext appcontext;
     private JSONObject root;
 
@@ -95,20 +95,11 @@ public class QuestionPresenter {
             String id = keys.next();
             questions.put(id, parsequestion(id));
         }
-        // debugging log all items
-        for (String key : questions.keySet()){
-            Log.d("key: ", key);
-            Log.d("> id:", questions.get(key).getId());
-            Log.d("> type:", questions.get(key).getType());
-            Log.d("> label:", questions.get(key).getLabel());
-            Log.d("> options:", questions.get(key).getOptions().get(0));
-            Log.d("> next:", questions.get(key).getNext().toString());
-        }
     }
 
     public static QuestionChoiceModel getcurrentquestion(){
-        String currentid = currentquestions.get(currentquestions.size() - 1);
-        String currentchoice = currentchoices.get(currentchoices.size() - 1);
+        String currentid = currentquestions.get(currentquestions.size() - 2);
+        String currentchoice = currentchoices.get(currentchoices.size() - 2);
         QuestionChoiceModel retchoicemodel = new QuestionChoiceModel(currentid, questions.get(currentid).getLabel(), questions.get(currentid).getOptions());
         retchoicemodel.setChoice(currentchoice);
         // set the return to the current last question
@@ -117,14 +108,14 @@ public class QuestionPresenter {
 
     public void addquestion(String id){
         currentquestions.add(id);
-        currentchoices.add("");
+        currentchoices.add("tempchoice");
     }
 
     public void changechoice(String id, String choice){
         //find the id
         int index = currentquestions.indexOf(id);
         // remove all that is greater than id
-        for (int i = currentquestions.size(); i > index; i--){
+        for (int i = currentquestions.size()-1; i > index; i--){
             currentchoices.remove(i);
             currentquestions.remove(i);
         }

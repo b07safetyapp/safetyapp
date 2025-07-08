@@ -16,10 +16,7 @@ public class QuestionaireActivity extends AppCompatActivity {
         setTitle("Questionaire Activity");
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         // get the items
-        QuestionPresenter questionPresenter = new QuestionPresenter();
-        ArrayList<QuestionChoiceModel> questions = new ArrayList<>();
-        questions.add(questionPresenter.getcurrentquestion());
-        QuestionaireAdapter adapter = new QuestionaireAdapter(this, questions);
+        QuestionaireAdapter adapter = new QuestionaireAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

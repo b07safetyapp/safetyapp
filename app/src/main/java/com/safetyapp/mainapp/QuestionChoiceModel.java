@@ -1,13 +1,14 @@
 package com.safetyapp.mainapp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionChoiceModel {
     public String id;
     public String label;
-    public List<String> options; // if there are any
+    public ArrayList<String> options; // if there are any
     public String choice;
-    public QuestionChoiceModel(String id, String label, List<String> options){
+    public QuestionChoiceModel(String id, String label, ArrayList<String> options){
         this.id = id;
         this.label = label;
         this.options = options;
@@ -19,6 +20,6 @@ public class QuestionChoiceModel {
 
     public String getId(){ return this.id; }
     public String getLabel(){ return this.label; }
-    public List<String> getOptions(){ return this.options; }
+    public ArrayList<String> getOptions(){ return this.options; }
     public String getChoice(){ return this.choice; }
 }
