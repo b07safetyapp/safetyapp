@@ -98,7 +98,7 @@ public class LoginActivity extends Activity {
             }
         });
 
-        builder.setNegativeButton("Skip", (dialog, which) -> dialog.cancel());
+        //builder.setNegativeButton("Skip", (dialog, which) -> dialog.cancel());
         builder.show();
     }
 
