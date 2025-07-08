@@ -1,18 +1,18 @@
 package com.safetyapp.mainapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.app.AlertDialog;
+import android.view.View;
 
 import androidx.annotation.NonNull;
-/*import androidx.security.crypto.EncryptedSharedPreferences;
-import androidx.security.crypto.MasterKey;
-
-import java.io.IOException;
-import java.security.GeneralSecurityException;*/
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,94 +20,130 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends Activity{
+public class LoginActivity extends Activity {
     private static final String TAG = "EmailPassword";
     private FirebaseAuth mAuth;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // [START initialize_auth]
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        // [END initialize_auth]
     }
 
-    // [START on_start_check_user]
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            reload();
+        if (currentUser != null) {
+            String savedPin = new PINManager().getSavedPin(this);
+            if (savedPin != null) {
+                showPinLoginDialog();
+            } else {
+                promptUserToSetPin();
+                updateUI(currentUser);
+            }
+        } else {
+            showLoginScreen();
         }
     }
-    // [END on_start_check_user]
 
-    private void createAccount(String email, String password) {
-        // [START create_user_with_email]
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+    private void showLoginScreen() {
+        setContentView(R.layout.activity_login); // ensure you have activity_login.xml
+
+        EditText emailField = findViewById(R.id.email_field);
+        EditText passwordField = findViewById(R.id.password_field);
+        Button loginButton = findViewById(R.id.login_button);
+
+        loginButton.setOnClickListener(v -> {
+            String email = emailField.getText().toString().trim();
+            String password = passwordField.getText().toString().trim();
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Email and password cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            String savedPin = new PINManager().getSavedPin(this);
+                            if (savedPin == null) {
+                                promptUserToSetPin();
+                            }
                             updateUI(user);
                         } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            Toast.makeText(this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
-        // [END create_user_with_email]
+                    });
+        });
     }
 
-    private void signIn(String email, String password) {
-        // [START sign_in_with_email]
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-                });
-        // [END sign_in_with_email]
+    private void promptUserToSetPin() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Set a 6-digit PIN for future logins");
+
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
+        builder.setView(input);
+
+        builder.setPositiveButton("Save", (dialog, which) -> {
+            String pin = input.getText().toString();
+            if (pin.length() == 6) {
+                new PINManager().savePin(LoginActivity.this, pin);
+                Toast.makeText(this, "PIN set successfully!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "PIN must be 6 digits", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Skip", (dialog, which) -> dialog.cancel());
+        builder.show();
     }
 
-    private void sendEmailVerification() {
-        // Send verification email
-        // [START send_email_verification]
-        final FirebaseUser user = mAuth.getCurrentUser();
-        assert user != null;
-        user.sendEmailVerification()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // Email sent
-                    }
-                });
-        // [END send_email_verification]
-    }
+    private void showPinLoginDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter your 6-digit PIN");
 
-    private void reload() { }
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
+        builder.setView(input);
+
+        builder.setPositiveButton("Login", (dialog, which) -> {
+            String enteredPin = input.getText().toString();
+            String savedPin = new PINManager().getSavedPin(LoginActivity.this);
+            if (savedPin != null && savedPin.equals(enteredPin)) {
+                FirebaseUser user = mAuth.getCurrentUser();
+                updateUI(user);
+            } else {
+                Toast.makeText(this, "Incorrect PIN", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+        builder.show();
+    }
 
     private void updateUI(FirebaseUser user) {
+        if (user != null) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 
+    private void reload() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            user.reload().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    updateUI(user);
+                } else {
+                    Toast.makeText(this, "Failed to reload user.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }
