@@ -20,9 +20,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class QuestionPresenter {
-    private HashMap<String, QuestionModel> questions = new HashMap<>();
-    private ArrayList<String> currentquestions = new ArrayList<>();
-    private ArrayList<String> currentchoices = new ArrayList<>();
+    private static HashMap<String, QuestionModel> questions = new HashMap<>();
+    private static ArrayList<String> currentquestions = new ArrayList<>();
+    private static ArrayList<String> currentchoices = new ArrayList<>();
     private AppContext appcontext;
     private JSONObject root;
 
@@ -106,7 +106,7 @@ public class QuestionPresenter {
         }
     }
 
-    public QuestionChoiceModel getcurrentquestion(){
+    public static QuestionChoiceModel getcurrentquestion(){
         String currentid = currentquestions.get(currentquestions.size() - 1);
         String currentchoice = currentchoices.get(currentchoices.size() - 1);
         QuestionChoiceModel retchoicemodel = new QuestionChoiceModel(currentid, questions.get(currentid).getLabel(), questions.get(currentid).getOptions());
