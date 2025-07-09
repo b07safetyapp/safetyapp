@@ -42,14 +42,18 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
     @Override
     public void onBindViewHolder(@NonNull QuestionaireAdapter.MyViewHolder holder, int position) {
         // current question
-        Log.d("current position is:", Integer.toString(position));
+        Log.d("current is:", Integer.toString(position));
+        Log.d("lets see all of the questions we have:", "");
+        for (int i = 0; i < questionchoices.size(); i++){
+            Log.d("question "+ i, questionchoices.get(i).getLabel());
+        }
         QuestionChoiceModel currentquestion = questionchoices.get(position);
         holder.label.setText(currentquestion.getLabel());
 
         ArrayList<String> options = currentquestion.options;
         // add chip groups
         for (int i = 0; i < options.size(); i++){
-            Log.d("adding chips", "");
+            Log.d("adding ", "");
             Chip chip = (Chip) LayoutInflater.from(context).inflate(R.layout.chip_choice, holder.chipGroup, false); // 85. Create chip
             chip.setText(options.get(i)); // 86. Set chip text
             chip.setChecked(choices.get(position).equals(options.get(i))); // 87. Check if selected
@@ -61,7 +65,7 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
                     // clear all the other checks
 
                     questionPresenter.changechoice(currentquestion.id, targetoption);
-                    questionPresenter.addquestion(targetoption);
+                    questionPresenter.addquestion(currentquestion.id, targetoption);
                     // get the next question
                     this.choices = questionPresenter.currentchoices;
                     Log.d("questions:", questionPresenter.currentquestions.toString());

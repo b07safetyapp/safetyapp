@@ -34,6 +34,7 @@ public class QuestionPresenter {
         }catch (Exception e){
             System.err.println(e);
         }
+        // add the default question to the questions list and choices list
     }
 
     private QuestionModel parsequestion(String id) throws IOException, JSONException{
@@ -98,14 +99,20 @@ public class QuestionPresenter {
     }
 
     public static QuestionChoiceModel getcurrentquestion(){
-        String currentid = currentquestions.get(currentquestions.size() - 2);
-        String currentchoice = currentchoices.get(currentchoices.size() - 2);
+        String currentid = currentquestions.get(currentquestions.size() - 1);
+        String currentchoice = currentchoices.get(currentchoices.size() - 1);
+        Log.d("current item is:", currentid);
         QuestionChoiceModel retchoicemodel = new QuestionChoiceModel(currentid, questions.get(currentid).getLabel(), questions.get(currentid).getOptions());
         retchoicemodel.setChoice(currentchoice);
         // set the return to the current last question
         return retchoicemodel;
     }
 
+    public void addquestion(String id, String choice){
+        String newquestion = questions.get(id).getNext().get(choice);
+        currentquestions.add(newquestion);
+        currentchoices.add("tempchoice");
+    }
     public void addquestion(String id){
         currentquestions.add(id);
         currentchoices.add("tempchoice");
