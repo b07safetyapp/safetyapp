@@ -1,54 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="horizontal"
-    tools:context=".MenuFragment">
+    android:padding="16dp">
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:text="?"
-        android:textSize="8dp" />
+    <!-- Row 1: items 1–3 -->
+    <LinearLayout
+        android:id="@+id/item1"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/item2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
 
-    <Button
-        android:id="@+id/button2"
-        android:onClick="goquestionaire"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:text="Questionaire"
-        android:textSize="8dp" />
+        >
 
-    <Button
-        android:id="@+id/button3"
-        android:onClick="gohomepage"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:text="Home"
-        android:textSize="8dp" />
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:backgroundTint="@color/buttonColor"
+            android:text="A"
+            android:textSize="12sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title A"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A"
+            android:textSize="12sp"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:text="?"
-        android:textSize="8dp" />
+    <LinearLayout
+        android:id="@+id/item2"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@id/item1"
+        app:layout_constraintEnd_toStartOf="@+id/item3"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:text="?"
-        android:textSize="8dp" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:text="Quesitonaire"
+            android:backgroundTint="@color/buttonColor"
+            android:textSize="10dp"/>
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Questionarie"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retake questionaire"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:backgroundTint="@color/buttonColor"
+            android:text="Home"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Home"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Return to home page"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Row 2: items 4–6 -->
+    <LinearLayout
+        android:id="@+id/item4"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/item5"
+        app:layout_constraintTop_toBottomOf="@+id/item1"
+        android:layout_marginTop="24dp"
+        app:layout_constraintHorizontal_chainStyle="spread">
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:text="C"
+            android:backgroundTint="@color/buttonColor"
+            android:textSize="12sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title C"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item5"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@id/item4"
+        app:layout_constraintEnd_toStartOf="@+id/item6"
+        app:layout_constraintTop_toBottomOf="@id/item2"
+        android:layout_marginTop="24dp">
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:text="D"
+            android:backgroundTint="@color/buttonColor"
+            android:textSize="12sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title D"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item5"
+        app:layout_constraintTop_toBottomOf="@id/item3">
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:backgroundTint="@color/buttonColor"
+            android:text="E"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Title E"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

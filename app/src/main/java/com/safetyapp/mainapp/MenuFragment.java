@@ -1,6 +1,5 @@
 package com.safetyapp.mainapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,11 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class MenuFragment extends Fragment {
-    AppContext appcontext;
-    Context ctx;
+
     public MenuFragment() {
-        appcontext = new AppContext();
-        ctx = appcontext.getContext();
     }
 
     public static MenuFragment newInstance() {
@@ -33,34 +29,43 @@ public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_menu, container, false);
-        // Set up click listeners
-        Button homeButton = view.findViewById(R.id.button3);
-        Button questionaireButton = view.findViewById(R.id.button2);
+        // Inflate the layout for this fragment
+        View root = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("going", "going to home page");
-                // route to homepage
-                Intent i = new Intent(ctx, HomeActivity.class);
-                i.putExtra("mykey", "myvalue");
-                startActivity(i);
-            }
+        Button btn1 = root.findViewById(R.id.button1);
+        Button btn2 = root.findViewById(R.id.button2);
+        Button btn3 = root.findViewById(R.id.button3);
+        Button btn4 = root.findViewById(R.id.button4);
+        Button btn5 = root.findViewById(R.id.button5);
+        Button btn6 = root.findViewById(R.id.button6);
+
+//        btn1.setOnClickListener(v -> {
+//            Intent i = new Intent(getActivity(), Screen1Activity.class);
+//            startActivity(i);
+//        });
+        btn2.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), QuestionaireActivity.class);
+            startActivity(i);
         });
-
-        questionaireButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("going", "going to home page");
-                // route to homepage
-                Intent i = new Intent(ctx, QuestionaireActivity.class);
-                i.putExtra("mykey", "myvalue");
-                startActivity(i);
-            }
+        btn3.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), HomeActivity.class);
+            startActivity(i);
         });
+//        btn4.setOnClickListener(v -> {
+//            Intent i = new Intent(getActivity(), Screen4Activity.class);
+//            startActivity(i);
+//        });
+//        btn5.setOnClickListener(v -> {
+//            Intent i = new Intent(getActivity(), Screen5Activity.class);
+//            startActivity(i);
+//        });
+//        btn6.setOnClickListener(v -> {
+//            Intent i = new Intent(getActivity(), Screen6Activity.class);
+//            startActivity(i);
+//        });
 
-        return view;
+        return root;
+
     }
 
 }
