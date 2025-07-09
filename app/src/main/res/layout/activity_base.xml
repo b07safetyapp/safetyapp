@@ -3,17 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="8dp"
+    >
+
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/exitbtn"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="end"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="18dp"
         android:background="@drawable/btn_circle_red"
         android:text="Exit"
         android:textSize="10dp"
         app:backgroundTint="@null" />
 
+    <FrameLayout
+        android:id="@+id/base_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
