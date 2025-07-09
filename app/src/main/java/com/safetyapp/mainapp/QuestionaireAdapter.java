@@ -1,6 +1,7 @@
 package com.safetyapp.mainapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +59,13 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
             chip.setText(options.get(i)); // 86. Set chip text
             chip.setChecked(choices.get(position).equals(options.get(i))); // 87. Check if selected
             chip.setOnCheckedChangeListener((c, checked) -> { // 88. Listen toggle
-                if(c.isChecked()){
+                // check if this is the final one
+                Log.d("currently this option is:", c.getText().toString());
+                if (c.getText().toString().equals("leave")){
+                    Log.d("GOING TO HOME!!", "");
+                    gohomepage();
+                }
+                else if(c.isChecked()){
                     Log.d("click", c.getText().toString());
                     String targetoption = c.getText().toString();
                     // modify the current question
@@ -92,5 +99,13 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
             label = itemView.findViewById(R.id.label);
             chipGroup = itemView.findViewById(R.id.chipGroup);
         }
+    }
+
+    public void gohomepage(){
+        Log.d("going", "going to home page");
+        // route to homepage
+        Intent i = new Intent(context, HomeActivity.class);
+        i.putExtra("mykey", "myvalue");
+        context.startActivity(i);
     }
 }
