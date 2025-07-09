@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_home;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+
         setTitle("Home Activity");
         Fragment myfragment = new MenuFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_box, myfragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
