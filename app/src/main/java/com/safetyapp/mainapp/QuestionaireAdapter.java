@@ -69,20 +69,22 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
                     // clear all the other checks
 
                     questionPresenter.changechoice(currentquestion.id, targetoption);
-                    questionPresenter.logcurrent();
                     questionPresenter.addquestion(currentquestion.id, targetoption);
-                    questionPresenter.logcurrent();
                     // delete all previous question and choices that are after this index.
+                    int questionsize = questionchoices.size()-1;
                     for (int v = questionchoices.size()-1; v > position; v--){
-                        Log.d("removing:", Integer.toString(v));
+                        Log.d("frontend removing:", Integer.toString(v));
                         // remove all
                         notifyItemRemoved(v);
-                        questionchoices.remove(v);
-                        choices.remove(v);
+                        this.questionchoices.remove(v);
                     }
+                    notifyItemRangeChanged(position, questionsize);
+                    questionPresenter.logcurrent();
                     // get the next question
                     questionchoices.add(questionPresenter.getcurrentquestion());
                     this.choices = questionPresenter.currentchoices;
+                    Log.d("!!! question choices:", questionchoices.toString());
+                    Log.d("!!! choices:", choices.toString());
                     notifyItemInserted(questionchoices.size() - 1);
                 }
             });
