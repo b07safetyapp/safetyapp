@@ -41,6 +41,5 @@
             android:exported="true"
             tools:ignore="RedundantLabel" />
     </application>
-    </application>
 
 </manifest>
