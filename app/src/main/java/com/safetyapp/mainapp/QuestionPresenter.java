@@ -73,6 +73,9 @@ public class QuestionPresenter {
 
 
     public void loadquestionsfromjson() throws IOException, JSONException{
+        // purge everything (for testing)
+        currentchoices.clear();
+        currentquestions.clear();
         // open the resource file
         Context ctx = appcontext.getContext();
         InputStream IS;
@@ -112,6 +115,8 @@ public class QuestionPresenter {
         String newquestion = questions.get(id).getNext().get(choice);
         currentquestions.add(newquestion);
         currentchoices.add("tempchoice");
+        Log.d("questions size:", Integer.toString(currentquestions.size()));
+        Log.d("choices size:", Integer.toString(currentchoices.size()));
     }
     public void addquestion(String id){
         currentquestions.add(id);
@@ -119,14 +124,29 @@ public class QuestionPresenter {
     }
 
     public void changechoice(String id, String choice){
+        Log.d("we are changing the choices", "");
         //find the id
         int index = currentquestions.indexOf(id);
+        Log.d("> The choice to switch to is: ", choice);
+        Log.d("> The id to target this choice is: ", id);
+        Log.d("checking what we currently have:", "");
+        Log.d("original currentchoices size:", Integer.toString(currentchoices.size()));
+        Log.d("original currentquestions size:", Integer.toString(currentquestions.size()));
+        Log.d("We will now delete", "");
         // remove all that is greater than id
         for (int i = currentquestions.size()-1; i > index; i--){
+            Log.d("removing", currentquestions.get(i));
             currentchoices.remove(i);
             currentquestions.remove(i);
         }
+        Log.d("new currentchoices size:", Integer.toString(currentchoices.size()));
+        Log.d("new currentquestions size:", Integer.toString(currentquestions.size()));
         this.currentchoices.set(index, choice);
+        // add a new question
     }
 
+    public void logcurrent(){
+        Log.d("=== currentquestions:", currentquestions.toString());
+        Log.d("=== currentchoices::", currentchoices.toString());
+    }
 }

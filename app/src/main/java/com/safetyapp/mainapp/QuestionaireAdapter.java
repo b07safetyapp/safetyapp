@@ -28,6 +28,7 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
         this.questionPresenter = new QuestionPresenter();
         this.questionchoices = new ArrayList<>();
         this.questionchoices.add(questionPresenter.getcurrentquestion());
+        // print the current size of things
         this.choices = questionPresenter.currentchoices;
     }
 
@@ -43,7 +44,6 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
     @Override
     public void onBindViewHolder(@NonNull QuestionaireAdapter.MyViewHolder holder, int position) {
         // current question
-        Log.d("current is:", Integer.toString(position));
         Log.d("lets see all of the questions we have:", "");
         for (int i = 0; i < questionchoices.size(); i++){
             Log.d("question "+ i, questionchoices.get(i).getLabel());
@@ -54,38 +54,35 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
         ArrayList<String> options = currentquestion.options;
         // add chip groups
         for (int i = 0; i < options.size(); i++){
-            Log.d("adding ", "");
             Chip chip = (Chip) LayoutInflater.from(context).inflate(R.layout.chip_choice, holder.chipGroup, false); // 85. Create chip
             chip.setText(options.get(i)); // 86. Set chip text
             chip.setChecked(choices.get(position).equals(options.get(i))); // 87. Check if selected
             chip.setOnCheckedChangeListener((c, checked) -> { // 88. Listen toggle
                 // clear the checked status for all other chips
-                Log.d("currently this option is:", c.getText().toString());
                 // go back home, if this chip is the one that makes yu leave
                 if (c.getText().toString().equals("leave")){
-                    Log.d("GOING TO HOME!!", "");
                     gohomepage();
                 }
                 else if(c.isChecked()){
-                    Log.d("click", c.getText().toString());
                     String targetoption = c.getText().toString();
                     // modify the current question
                     // clear all the other checks
 
                     questionPresenter.changechoice(currentquestion.id, targetoption);
+                    questionPresenter.logcurrent();
                     questionPresenter.addquestion(currentquestion.id, targetoption);
+                    questionPresenter.logcurrent();
                     // delete all previous question and choices that are after this index.
                     for (int v = questionchoices.size()-1; v > position; v--){
+                        Log.d("removing:", Integer.toString(v));
                         // remove all
+                        notifyItemRemoved(v);
                         questionchoices.remove(v);
                         choices.remove(v);
                     }
                     // get the next question
-                    Log.d("questions:", questionPresenter.currentquestions.toString());
-                    Log.d("choices:", choices.toString());
                     questionchoices.add(questionPresenter.getcurrentquestion());
                     this.choices = questionPresenter.currentchoices;
-                    Log.d("question choices:", Integer.toString(questionchoices.size()));
                     notifyItemInserted(questionchoices.size() - 1);
                 }
             });
@@ -109,7 +106,6 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
     }
 
     public void gohomepage(){
-        Log.d("going", "going to home page");
         // route to homepage
         Intent i = new Intent(context, HomeActivity.class);
         i.putExtra("mykey", "myvalue");
