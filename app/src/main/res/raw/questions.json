@@ -1,219 +1,223 @@
 {
-  "start": "1",
+  "start": "status",
   "questions": {
-    "1": {
-      "id": "1",
+    "status": {
+      "id": "status",
       "type": "multi",
       "label": "Select your current status",
       "options": ["still", "planning", "post"],
       "next": {
-        "still": "3632",
-        "planning": "6029",
-        "post": "7129"
+        "still": "s1",
+        "planning": "p1",
+        "post": "t1"
       }
     },
 
-    "3632": {
-      "id": "3632",
+    /* ─── STILL BRANCH (10 qs) ─────────────────────────────────────────── */
+    "s1": {
+      "id": "s1",
       "type": "rating",
       "label": "How satisfied are you right now? (1-10)",
-      "next": { "default": "3633" }
+      "next": { "default": "s2" }
     },
-    "3633": {
-      "id": "3633",
+    "s2": {
+      "id": "s2",
       "type": "rating",
       "label": "How often do you communicate openly? (1-10)",
-      "next": { "default": "3634" }
+      "next": { "default": "s3" }
     },
-    "3634": {
-      "id": "3634",
+    "s3": {
+      "id": "s3",
       "type": "rating",
       "label": "How many conflicts occur per month?",
       "next": {
-        "<=3": "9129",
-        "default": "9068"
+        "<=3": "s4_low",
+        "default": "s4_high"
       }
     },
-    "9129": {
-      "id": "9129",
+    "s4_low": {
+      "id": "s4_low",
       "type": "text",
       "label": "What helps you keep conflicts low?",
-      "next": { "default": "1315" }
+      "next": { "default": "s5" }
     },
-    "9068": {
-      "id": "9068",
+    "s4_high": {
+      "id": "s4_high",
       "type": "text",
       "label": "What’s the main trigger for your conflicts?",
-      "next": { "default": "6124" }
+      "next": { "default": "s5" }
     },
-    "6124": {
-      "id": "6124",
+    "s5": {
+      "id": "s5",
       "type": "boolean",
       "label": "Have you tried counseling together?",
       "next": {
-        "true": "1674",
-        "false": "1679"
+        "true": "s6_yes",
+        "false": "s6_no"
       }
     },
-    "1674": {
-      "id": "1674",
+    "s6_yes": {
+      "id": "s6_yes",
       "type": "text",
       "label": "What was most helpful about counseling?",
-      "next": { "default": "1315" }
+      "next": { "default": "s7" }
     },
-    "1679": {
-      "id": "1679",
+    "s6_no": {
+      "id": "s6_no",
       "type": "multi",
       "label": "What stopped you from trying counseling?",
       "options": ["Cost", "Time", "Stigma", "Other"],
-      "next": { "default": "1298" }
+      "next": { "default": "s7" }
     },
-    "1315": {
-      "id": "1315",
+    "s7": {
+      "id": "s7",
       "type": "multi",
       "label": "Which activities boost your bond?",
       "options": ["Travel", "Date nights", "Hobbies", "Deep talks"],
-      "next": { "default": "1298" }
+      "next": { "default": "s8" }
     },
-    "1298": {
-      "id": "1298",
+    "s8": {
+      "id": "s8",
       "type": "text",
       "label": "If you could change one thing today, what would it be?",
-      "next": { "default": "9999" }
+      "next": { "default": "end" }
     },
 
-    "6029": {
-      "id": "6029",
+    /* ─── PLANNING BRANCH (10 qs) ─────────────────────────────────────── */
+    "p1": {
+      "id": "p1",
       "type": "rating",
       "label": "How prepared do you feel? (1-10)",
-      "next": { "default": "6033" }
+      "next": { "default": "p2" }
     },
-    "6033": {
-      "id": "6033",
+    "p2": {
+      "id": "p2",
       "type": "boolean",
       "label": "Have you consulted a lawyer or mediator?",
       "next": {
-        "true": "6036",
-        "false": "7224"
+        "true": "p3_yes",
+        "false": "p3_no"
       }
     },
-    "6036": {
-      "id": "6036",
+    "p3_yes": {
+      "id": "p3_yes",
       "type": "text",
       "label": "What advice did they give you?",
-      "next": { "default": "3724" }
+      "next": { "default": "p4" }
     },
-    "7224": {
-      "id": "7224",
+    "p3_no": {
+      "id": "p3_no",
       "type": "text",
       "label": "What’s holding you back from consulting?",
-      "next": { "default": "3724" }
+      "next": { "default": "p4" }
     },
-    "3724": {
-      "id": "3724",
+    "p4": {
+      "id": "p4",
       "type": "multi",
       "label": "Which documents have you gathered?",
       "options": ["Bank statements", "Lease/mortgage", "Tax returns", "Insurance policies"],
-      "next": { "default": "3715" }
+      "next": { "default": "p5" }
     },
-    "3715": {
-      "id": "3715",
+    "p5": {
+      "id": "p5",
       "type": "text",
       "label": "What’s your biggest financial concern?",
-      "next": { "default": "8476" }
+      "next": { "default": "p6" }
     },
-    "8476": {
-      "id": "8476",
+    "p6": {
+      "id": "p6",
       "type": "boolean",
       "label": "Do you have a clear living-arrangements plan?",
       "next": {
-        "true": "8967",
-        "false": "8318"
+        "true": "p7",
+        "false": "p8"
       }
     },
-    "8967": {
-      "id": "8967",
+    "p7": {
+      "id": "p7",
       "type": "text",
       "label": "Describe your living-arrangements plan.",
-      "next": { "default": "9419" }
+      "next": { "default": "p9" }
     },
-    "8318": {
-      "id": "8318",
+    "p8": {
+      "id": "p8",
       "type": "text",
       "label": "What help do you need to plan living arrangements?",
-      "next": { "default": "9419" }
+      "next": { "default": "p9" }
     },
-    "9419": {
-      "id": "9419",
+    "p9": {
+      "id": "p9",
       "type": "text",
       "label": "What emotional support would help you most right now?",
-      "next": { "default": "9999" }
+      "next": { "default": "end" }
     },
 
-    "7129": {
-      "id": "7129",
+    /* ─── POST BRANCH (10 qs) ─────────────────────────────────────────── */
+    "t1": {
+      "id": "t1",
       "type": "rating",
-      "label": "How well are you coping today? (1-10)",
-      "next": { "default": "7133" }
+      "label": "How are you coping today? (1-10)",
+      "next": { "default": "t2" }
     },
-    "7133": {
-      "id": "7133",
+    "t2": {
+      "id": "t2",
       "type": "boolean",
       "label": "Have you started any new routines since?",
       "next": {
-        "true": "6601",
-        "false": "6653"
+        "true": "t3_yes",
+        "false": "t3_no"
       }
     },
-    "6601": {
-      "id": "6601",
+    "t3_yes": {
+      "id": "t3_yes",
       "type": "multi",
       "label": "Which routines have you started?",
       "options": ["Exercise", "Journaling", "Meditation", "Socializing"],
-      "next": { "default": "3485" }
+      "next": { "default": "t4" }
     },
-    "6653": {
-      "id": "6653",
+    "t3_no": {
+      "id": "t3_no",
       "type": "text",
       "label": "What’s stopping you from new routines?",
-      "next": { "default": "3485" }
+      "next": { "default": "t4" }
     },
-    "3485": {
-      "id": "3485",
+    "t4": {
+      "id": "t4",
       "type": "rating",
-      "label": "How supported do you feel by fri9999s/family? (1-10)",
-      "next": { "default": "3499" }
+      "label": "How supported do you feel by friends/family? (1-10)",
+      "next": { "default": "t5" }
     },
-    "3499": {
-      "id": "3499",
+    "t5": {
+      "id": "t5",
       "type": "boolean",
       "label": "Have you considered professional support?",
       "next": {
-        "true": "3555",
-        "false": "3654"
+        "true": "t6_yes",
+        "false": "t6_no"
       }
     },
-    "3555": {
-      "id": "3555",
+    "t6_yes": {
+      "id": "t6_yes",
       "type": "text",
       "label": "What would you seek support for?",
-      "next": { "default": "8677" }
+      "next": { "default": "t7" }
     },
-    "3654": {
-      "id": "3654",
+    "t6_no": {
+      "id": "t6_no",
       "type": "text",
       "label": "What’s holding you back from seeking support?",
-      "next": { "default": "8677" }
+      "next": { "default": "t7" }
     },
-    "8677": {
-      "id": "8677",
+    "t7": {
+      "id": "t7",
       "type": "text",
       "label": "What goal do you have for the next month?",
-      "next": { "default": "9999" }
+      "next": { "default": "end" }
     },
 
-    "9999": {
-      "id": "9999",
+    /* ─── END NODE ───────────────────────────────────────────────────── */
+    "end": {
+      "id": "end",
       "type": "info",
       "label": "Thank you! You’ve completed the survey."
     }
