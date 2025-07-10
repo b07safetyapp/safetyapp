@@ -14,22 +14,41 @@
     "q2": {
       "type": "multi",
       "label": "Question 2",
-      "options": ["leave"],
+      "options": ["option 1", "option 2"],
       "next": {
-        "leave": "leave"
+        "option 1": "q5",
+        "option 2": "q6"
       }
     },
     "q3": {
       "type": "multi",
       "label": "Question 3",
-      "options": ["leave"],
+      "options": ["option 1", "option 2"],
       "next": {
-        "leave": "leave"
+        "option 1": "q5",
+        "option 2": "q6"
       }
     },
     "q4": {
       "type": "multi",
       "label": "Question 4",
+      "options": ["option 1", "option 2"],
+      "next": {
+        "option 1": "q5",
+        "option 2": "q6"
+      }
+    },
+    "q5": {
+      "type": "multi",
+      "label": "Question 5",
+      "options": ["leave"],
+      "next": {
+        "leave": "leave"
+      }
+    },
+    "q6": {
+      "type": "multi",
+      "label": "Question 6",
       "options": ["leave"],
       "next": {
         "leave": "leave"
