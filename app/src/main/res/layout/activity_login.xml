@@ -18,7 +18,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to B07SafetyApp"
+            android:text="Welcome Back!"
             android:textSize="24sp"
             android:textStyle="bold"
             android:fontFamily="monospace"
@@ -63,7 +63,7 @@
 
         <!-- Sign Up Button -->
         <Button
-            android:id="@+id/signupButton"
+            android:id="@+id/pinSigninButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Log In With Email "
@@ -72,46 +72,40 @@
             android:layout_marginBottom="12dp"
             tools:ignore="HardcodedText" />
 
-        <!-- Log in text -->
         <TextView
-            android:id="@+id/loginInstead"
+            android:id="@+id/ortext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="I already have an account"
-            android:textColor="#3F77F6"
+            android:text="OR"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textSize="14sp"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_marginBottom="24dp"
-            android:padding="4dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="16dp"
+            android:textColor="#000000"
             tools:ignore="HardcodedText" />
 
-
-        <!-- Disclaimer with checkbox -->
-        <LinearLayout
+        <!-- Log in with PIN text -->
+        <EditText
+            android:id="@+id/pinInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:hint="Enter PIN"
+            android:background="#E0E0E0"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
+            android:inputType="textPassword"
+            android:textColor="#000000"
+            tools:ignore="HardcodedText" />
 
-            <CheckBox
-                android:id="@+id/disclaimerCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp" />
-
-            <TextView
-                android:id="@+id/disclaimerText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/disclaimer"
-                android:textSize="14sp"
-                android:textColor="#000000" />
-        </LinearLayout>
-
+        <!-- Sign Up Button -->
+        <Button
+            android:id="@+id/signupButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log In With PIN "
+            android:textColor="#FFFFFF"
+            android:background="#3F77F6"
+            android:layout_marginBottom="12dp"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 </ScrollView>
