@@ -6,4 +6,6 @@
     <string name="enter_tags_comma_separated">Enter tags (comma-separated)</string>
     <string name="select_and_upload_file">Select and Upload File</string>
     <string name="delete_file">Delete file</string>
+    <string name="login_msg">I already have an account, log in instead</string>
+    <string name="disclaimer">I understand that this app is not a substitute for emergency services. All information provided within this app is not guaranteed to prevent mental or physical harm.</string>
 </resources>
