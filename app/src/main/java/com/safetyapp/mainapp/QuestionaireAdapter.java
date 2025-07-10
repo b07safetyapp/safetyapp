@@ -59,8 +59,9 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
             chip.setText(options.get(i)); // 86. Set chip text
             chip.setChecked(choices.get(position).equals(options.get(i))); // 87. Check if selected
             chip.setOnCheckedChangeListener((c, checked) -> { // 88. Listen toggle
-                // check if this is the final one
+                // clear the checked status for all other chips
                 Log.d("currently this option is:", c.getText().toString());
+                // go back home, if this chip is the one that makes yu leave
                 if (c.getText().toString().equals("leave")){
                     Log.d("GOING TO HOME!!", "");
                     gohomepage();
@@ -73,11 +74,17 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
 
                     questionPresenter.changechoice(currentquestion.id, targetoption);
                     questionPresenter.addquestion(currentquestion.id, targetoption);
+                    // delete all previous question and choices that are after this index.
+                    for (int v = questionchoices.size()-1; v > position; v--){
+                        // remove all
+                        questionchoices.remove(v);
+                        choices.remove(v);
+                    }
                     // get the next question
-                    this.choices = questionPresenter.currentchoices;
                     Log.d("questions:", questionPresenter.currentquestions.toString());
                     Log.d("choices:", choices.toString());
                     questionchoices.add(questionPresenter.getcurrentquestion());
+                    this.choices = questionPresenter.currentchoices;
                     Log.d("question choices:", Integer.toString(questionchoices.size()));
                     notifyItemInserted(questionchoices.size() - 1);
                 }
