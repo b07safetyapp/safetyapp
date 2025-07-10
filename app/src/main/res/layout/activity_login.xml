@@ -61,17 +61,18 @@
             android:textColor="#000000"
             tools:ignore="HardcodedText" />
 
-        <!-- Sign Up Button -->
+        <!-- Log In With Email Button -->
         <Button
-            android:id="@+id/pinSigninButton"
+            android:id="@+id/loginEmailButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log In With Email "
+            android:text="Log In With Email"
             android:textColor="#FFFFFF"
             android:background="#3F77F6"
             android:layout_marginBottom="12dp"
             tools:ignore="HardcodedText" />
 
+        <!-- OR Separator -->
         <TextView
             android:id="@+id/ortext"
             android:layout_width="wrap_content"
@@ -84,12 +85,12 @@
             android:textColor="#000000"
             tools:ignore="HardcodedText" />
 
-        <!-- Log in with PIN text -->
+        <!-- PIN Field -->
         <EditText
             android:id="@+id/pinInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter PIN"
+            android:hint="Enter 6-digit PIN"
             android:background="#E0E0E0"
             android:padding="12dp"
             android:layout_marginBottom="16dp"
@@ -97,12 +98,12 @@
             android:textColor="#000000"
             tools:ignore="HardcodedText" />
 
-        <!-- Sign Up Button -->
+        <!-- Log In With PIN Button -->
         <Button
-            android:id="@+id/signupButton"
+            android:id="@+id/loginPinButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log In With PIN "
+            android:text="Log In With PIN"
             android:textColor="#FFFFFF"
             android:background="#3F77F6"
             android:layout_marginBottom="12dp"
