@@ -104,7 +104,6 @@ public class QuestionPresenter {
     public static QuestionChoiceModel getcurrentquestion(){
         String currentid = currentquestions.get(currentquestions.size() - 1);
         String currentchoice = currentchoices.get(currentchoices.size() - 1);
-        Log.d("current item is:", currentid);
         QuestionChoiceModel retchoicemodel = new QuestionChoiceModel(currentid, questions.get(currentid).getLabel(), questions.get(currentid).getType(), questions.get(currentid).getOptions());
         retchoicemodel.setChoice(currentchoice);
         // set the return to the current last question

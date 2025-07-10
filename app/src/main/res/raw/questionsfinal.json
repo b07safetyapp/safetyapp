@@ -87,7 +87,7 @@
       }
     },
     "q10": {
-      "type": "text",
+      "type": "multi",
       "label": "What stopped you?",
       "options": ["Time", "Stigma", "Cost", "Other"],
       "next": {
@@ -175,9 +175,25 @@
       "label": "How supported do you feel by friends and family?",
       "options": ["Very", "Somewhat", "Not at all"],
       "next": {
-        "Very": "leave",
-        "Somewhat": "leave",
-        "Not at all": "leave"
+        "Very": "q20",
+        "Somewhat": "q20",
+        "Not at all": "q20"
+      }
+    },
+    "q20": {
+      "type": "text",
+      "label": "What goal do you have for next month?",
+      "options": [],
+      "next": {
+        "next": "q21"
+      }
+    },
+    "q21": {
+      "type": "multi",
+      "label": "Thank you! You've completed the survey",
+      "options": ["leave"],
+      "next": {
+        "leave": "leave"
       }
     }
   }
