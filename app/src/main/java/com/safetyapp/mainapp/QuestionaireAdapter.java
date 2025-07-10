@@ -50,6 +50,7 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
         }
         QuestionChoiceModel currentquestion = questionchoices.get(position);
         holder.label.setText(currentquestion.getLabel());
+        holder.chipGroup.removeAllViews();
 
         ArrayList<String> options = currentquestion.options;
         // add chip groups
