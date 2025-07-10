@@ -115,6 +115,7 @@ public class QuestionPresenter {
         String newquestion = questions.get(id).getNext().get(choice);
         currentquestions.add(newquestion);
         currentchoices.add("tempchoice");
+        logcurrent();
         Log.d("questions size:", Integer.toString(currentquestions.size()));
         Log.d("choices size:", Integer.toString(currentchoices.size()));
     }
