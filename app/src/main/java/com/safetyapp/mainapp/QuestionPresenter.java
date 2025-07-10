@@ -73,11 +73,14 @@ public class QuestionPresenter {
 
 
     public void loadquestionsfromjson() throws IOException, JSONException{
+        // purge everything (for testing)
+        currentchoices.clear();
+        currentquestions.clear();
         // open the resource file
         Context ctx = appcontext.getContext();
         InputStream IS;
         Resources resources = ctx.getResources();
-        IS = resources.openRawResource(R.raw.questions2);
+        IS = resources.openRawResource(R.raw.questionsfinal);
         // read the string contents and parse into json
         BufferedReader BR = new BufferedReader(new InputStreamReader(IS));
         StringBuilder SB = new StringBuilder();
@@ -101,8 +104,7 @@ public class QuestionPresenter {
     public static QuestionChoiceModel getcurrentquestion(){
         String currentid = currentquestions.get(currentquestions.size() - 1);
         String currentchoice = currentchoices.get(currentchoices.size() - 1);
-        Log.d("current item is:", currentid);
-        QuestionChoiceModel retchoicemodel = new QuestionChoiceModel(currentid, questions.get(currentid).getLabel(), questions.get(currentid).getOptions());
+        QuestionChoiceModel retchoicemodel = new QuestionChoiceModel(currentid, questions.get(currentid).getLabel(), questions.get(currentid).getType(), questions.get(currentid).getOptions());
         retchoicemodel.setChoice(currentchoice);
         // set the return to the current last question
         return retchoicemodel;
@@ -111,22 +113,48 @@ public class QuestionPresenter {
     public void addquestion(String id, String choice){
         String newquestion = questions.get(id).getNext().get(choice);
         currentquestions.add(newquestion);
-        currentchoices.add("tempchoice");
+        currentchoices.add("");
+        logcurrent();
+        Log.d("questions size:", Integer.toString(currentquestions.size()));
+        Log.d("choices size:", Integer.toString(currentchoices.size()));
+    }
+    public void addquestiontext(String id){
+        String newquestion = questions.get(id).getNext().get("next");
+        currentquestions.add(newquestion);
+        currentchoices.add("");
+        logcurrent();
+        Log.d("questions size:", Integer.toString(currentquestions.size()));
+        Log.d("choices size:", Integer.toString(currentchoices.size()));
     }
     public void addquestion(String id){
         currentquestions.add(id);
-        currentchoices.add("tempchoice");
+        currentchoices.add("");
     }
 
     public void changechoice(String id, String choice){
+        Log.d("we are changing the choices", "");
         //find the id
         int index = currentquestions.indexOf(id);
+        Log.d("> The choice to switch to is: ", choice);
+        Log.d("> The id to target this choice is: ", id);
+        Log.d("checking what we currently have:", "");
+        Log.d("original currentchoices size:", Integer.toString(currentchoices.size()));
+        Log.d("original currentquestions size:", Integer.toString(currentquestions.size()));
+        Log.d("We will now delete", "");
         // remove all that is greater than id
         for (int i = currentquestions.size()-1; i > index; i--){
+            Log.d("removing", currentquestions.get(i));
             currentchoices.remove(i);
             currentquestions.remove(i);
         }
+        Log.d("new currentchoices size:", Integer.toString(currentchoices.size()));
+        Log.d("new currentquestions size:", Integer.toString(currentquestions.size()));
         this.currentchoices.set(index, choice);
+        // add a new question
     }
 
+    public void logcurrent(){
+        Log.d("=== currentquestions:", currentquestions.toString());
+        Log.d("=== currentchoices::", currentchoices.toString());
+    }
 }
