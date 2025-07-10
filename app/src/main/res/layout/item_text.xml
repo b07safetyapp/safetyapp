@@ -32,5 +32,14 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:inputType="text"/>
+
+    <Button
+        android:id="@+id/submit_area"
+        android:layout_gravity="center"
+        android:text="OK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </Button>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

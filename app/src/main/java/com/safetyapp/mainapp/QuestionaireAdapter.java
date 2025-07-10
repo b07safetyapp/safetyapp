@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyViewHolder>{
+    private static final int VIEW_TYPE_MULTI= 0;
+    private static final int VIEW_TYPE_TEXT = 1;
+    private static final int VIEW_TYPE_INFO = 2;
     QuestionPresenter questionPresenter;
     Context context;
     ArrayList<QuestionChoiceModel> questionchoices;
@@ -35,14 +40,72 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
     @NonNull
     @Override
     public QuestionaireAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // switch case for the type of the item
+        View view;
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_multi, parent, false);
+        Log.d("type", Integer.toString(viewType));
+        switch(viewType){
+            case VIEW_TYPE_TEXT:
+                Log.d("we are setting this layout to this new one!", "");
+                view = inflater.inflate(R.layout.item_text, parent, false);
+                break;
+            case VIEW_TYPE_MULTI:
+                view = inflater.inflate(R.layout.item_multi, parent, false);
+                break;
+            case VIEW_TYPE_INFO:
+                view = inflater.inflate(R.layout.item_multi, parent, false);
+                break;
+            default:
+                view = inflater.inflate(R.layout.item_multi, parent, false);
+                break;
+        }
 
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull QuestionaireAdapter.MyViewHolder holder, int position) {
+        int quesiontype = getItemViewType(position);
+        switch (quesiontype){
+            case VIEW_TYPE_TEXT:
+                onBindTextChoices(holder, position);
+                break;
+            case VIEW_TYPE_INFO:
+                onBindMultiChoices(holder, position);
+                break;
+            case VIEW_TYPE_MULTI:
+                onBindMultiChoices(holder, position);
+                break;
+            default:
+                onBindMultiChoices(holder, position);
+                break;
+        }
+    }
+
+    public void onBindTextChoices(@NonNull QuestionaireAdapter.MyViewHolder holder, int position){
+        QuestionChoiceModel currentquestion = questionchoices.get(position);
+        holder.label.setText(currentquestion.getLabel());
+        EditText textinput = holder.editText;
+        // add the onclick method for the button
+        Button submitbutton = holder.submitButton;
+        //create a variable that contain your button
+        submitbutton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            //On click function
+            public void onClick(View view) {
+                Log.d("We are clicking this thingay", "");
+                questionPresenter.changechoice(currentquestion.id, textinput.getText().toString());
+                questionPresenter.addquestiontext(currentquestion.id);
+                questionchoices.add(questionPresenter.getcurrentquestion());
+                choices = questionPresenter.currentchoices;
+                int questionsize = questionchoices.size()-1;
+                notifyItemRangeChanged(position, questionsize);
+                notifyItemInserted(questionchoices.size() - 1);
+            }
+        });
+    }
+
+    public void onBindMultiChoices(@NonNull QuestionaireAdapter.MyViewHolder holder, int position){
         // current question
         Log.d("lets see all of the questions we have:", "");
         for (int i = 0; i < questionchoices.size(); i++){
@@ -99,12 +162,17 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
+        EditText editText;
+        Button submitButton;
         TextView label;
         ChipGroup chipGroup;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             label = itemView.findViewById(R.id.label);
             chipGroup = itemView.findViewById(R.id.chipGroup);
+            editText = itemView.findViewById(R.id.editText);
+            submitButton = itemView.findViewById(R.id.submit_area);
+
         }
     }
 
@@ -113,5 +181,23 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
         Intent i = new Intent(context, HomeActivity.class);
         i.putExtra("mykey", "myvalue");
         context.startActivity(i);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        QuestionChoiceModel currentQuestion = questionchoices.get(position);
+
+        // Determine view type based on question properties
+        // You'll need to add a field to QuestionChoiceModel to specify type
+        switch (currentQuestion.getType()) {
+            case "multi":
+                return VIEW_TYPE_MULTI;
+            case "text":
+                return VIEW_TYPE_TEXT;
+            case "info":
+                return VIEW_TYPE_INFO;
+            default:
+                return VIEW_TYPE_MULTI;
+        }
     }
 }
