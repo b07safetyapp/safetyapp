@@ -99,7 +99,7 @@
     },
     "q11": {
       "type": "multi",
-      "label": "Which activities boost your bond??",
+      "label": "Which activities boost your bond?",
       "options": ["Travel", "Date nights", "Hobbies", "Deep talks"],
       "next": {
         "Travel": "q12",

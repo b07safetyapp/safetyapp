@@ -43,10 +43,9 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
         // switch case for the type of the item
         View view;
         LayoutInflater inflater = LayoutInflater.from(context);
-        Log.d("type", Integer.toString(viewType));
+        questionPresenter.logcurrent();
         switch(viewType){
             case VIEW_TYPE_TEXT:
-                Log.d("we are setting this layout to this new one!", "");
                 view = inflater.inflate(R.layout.item_text, parent, false);
                 break;
             case VIEW_TYPE_MULTI:
@@ -86,6 +85,7 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
         QuestionChoiceModel currentquestion = questionchoices.get(position);
         holder.label.setText(currentquestion.getLabel());
         EditText textinput = holder.editText;
+        textinput.setText(choices.get(position));
         // add the onclick method for the button
         Button submitbutton = holder.submitButton;
         //create a variable that contain your button
@@ -93,7 +93,6 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
             @Override
             //On click function
             public void onClick(View view) {
-                Log.d("We are clicking this thingay", "");
                 questionPresenter.changechoice(currentquestion.id, textinput.getText().toString());
                 questionPresenter.addquestiontext(currentquestion.id);
                 questionchoices.add(questionPresenter.getcurrentquestion());
@@ -107,10 +106,6 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
 
     public void onBindMultiChoices(@NonNull QuestionaireAdapter.MyViewHolder holder, int position){
         // current question
-        Log.d("lets see all of the questions we have:", "");
-        for (int i = 0; i < questionchoices.size(); i++){
-            Log.d("question "+ i, questionchoices.get(i).getLabel());
-        }
         QuestionChoiceModel currentquestion = questionchoices.get(position);
         holder.label.setText(currentquestion.getLabel());
         holder.chipGroup.removeAllViews();
@@ -137,7 +132,6 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
                     // delete all previous question and choices that are after this index.
                     int questionsize = questionchoices.size()-1;
                     for (int v = questionchoices.size()-1; v > position; v--){
-                        Log.d("frontend removing:", Integer.toString(v));
                         // remove all
                         notifyItemRemoved(v);
                         this.questionchoices.remove(v);
@@ -147,8 +141,6 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
                     // get the next question
                     questionchoices.add(questionPresenter.getcurrentquestion());
                     this.choices = questionPresenter.currentchoices;
-                    Log.d("!!! question choices:", questionchoices.toString());
-                    Log.d("!!! choices:", choices.toString());
                     notifyItemInserted(questionchoices.size() - 1);
                 }
             });

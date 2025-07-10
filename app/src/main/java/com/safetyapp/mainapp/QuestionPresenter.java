@@ -114,7 +114,7 @@ public class QuestionPresenter {
     public void addquestion(String id, String choice){
         String newquestion = questions.get(id).getNext().get(choice);
         currentquestions.add(newquestion);
-        currentchoices.add("tempchoice");
+        currentchoices.add("");
         logcurrent();
         Log.d("questions size:", Integer.toString(currentquestions.size()));
         Log.d("choices size:", Integer.toString(currentchoices.size()));
@@ -122,14 +122,14 @@ public class QuestionPresenter {
     public void addquestiontext(String id){
         String newquestion = questions.get(id).getNext().get("next");
         currentquestions.add(newquestion);
-        currentchoices.add("temporary");
+        currentchoices.add("");
         logcurrent();
         Log.d("questions size:", Integer.toString(currentquestions.size()));
         Log.d("choices size:", Integer.toString(currentchoices.size()));
     }
     public void addquestion(String id){
         currentquestions.add(id);
-        currentchoices.add("tempchoice");
+        currentchoices.add("");
     }
 
     public void changechoice(String id, String choice){
