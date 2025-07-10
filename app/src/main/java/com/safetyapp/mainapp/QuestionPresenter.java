@@ -80,7 +80,7 @@ public class QuestionPresenter {
         Context ctx = appcontext.getContext();
         InputStream IS;
         Resources resources = ctx.getResources();
-        IS = resources.openRawResource(R.raw.questions2);
+        IS = resources.openRawResource(R.raw.questionsfinal);
         // read the string contents and parse into json
         BufferedReader BR = new BufferedReader(new InputStreamReader(IS));
         StringBuilder SB = new StringBuilder();
