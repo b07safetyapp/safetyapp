@@ -77,10 +77,17 @@
             android:id="@+id/loginInstead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_msg"
-            android:textColor="#000000"
+            android:text="I already have an account"
+            android:textColor="#3F77F6"
+            android:textStyle="bold"
             android:textSize="14sp"
-            android:layout_marginBottom="24dp" />
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="24dp"
+            android:padding="4dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            tools:ignore="HardcodedText" />
 
         <!-- Disclaimer with checkbox -->
         <LinearLayout
