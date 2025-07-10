@@ -105,7 +105,7 @@ public class QuestionPresenter {
         String currentid = currentquestions.get(currentquestions.size() - 1);
         String currentchoice = currentchoices.get(currentchoices.size() - 1);
         Log.d("current item is:", currentid);
-        QuestionChoiceModel retchoicemodel = new QuestionChoiceModel(currentid, questions.get(currentid).getLabel(), questions.get(currentid).getOptions());
+        QuestionChoiceModel retchoicemodel = new QuestionChoiceModel(currentid, questions.get(currentid).getLabel(), questions.get(currentid).getType(), questions.get(currentid).getOptions());
         retchoicemodel.setChoice(currentchoice);
         // set the return to the current last question
         return retchoicemodel;
@@ -115,6 +115,14 @@ public class QuestionPresenter {
         String newquestion = questions.get(id).getNext().get(choice);
         currentquestions.add(newquestion);
         currentchoices.add("tempchoice");
+        logcurrent();
+        Log.d("questions size:", Integer.toString(currentquestions.size()));
+        Log.d("choices size:", Integer.toString(currentchoices.size()));
+    }
+    public void addquestiontext(String id){
+        String newquestion = questions.get(id).getNext().get("next");
+        currentquestions.add(newquestion);
+        currentchoices.add("temporary");
         logcurrent();
         Log.d("questions size:", Integer.toString(currentquestions.size()));
         Log.d("choices size:", Integer.toString(currentchoices.size()));

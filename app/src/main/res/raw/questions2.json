@@ -30,12 +30,11 @@
       }
     },
     "q4": {
-      "type": "multi",
+      "type": "text",
       "label": "Question 4",
-      "options": ["option 1", "option 2"],
+      "options": [],
       "next": {
-        "option 1": "q5",
-        "option 2": "q6"
+        "next": "q5"
       }
     },
     "q5": {
