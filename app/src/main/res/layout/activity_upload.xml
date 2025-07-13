@@ -70,7 +70,7 @@
             <Button
                 android:id="@+id/btnViewDocs"
                 style="?android:attr/buttonBarButtonStyle"
-                android:text="View All"
+                android:text="Add Tags"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
             <Button
                 android:id="@+id/btnEditDocs"
                 style="?android:attr/buttonBarButtonStyle"
-                android:text="Edit/Delete"
+                android:text="View All Documents"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
             <Button
                 android:id="@+id/btnEditContacts"
                 style="?android:attr/buttonBarButtonStyle"
-                android:text="Edit/Delete"
+                android:text="View All Contacts"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -163,13 +163,6 @@
             android:text="Add Safe Location"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:text="Long‑press the map to save a safe location."
-            android:textSize="14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:ignore="HardcodedText" />
@@ -190,7 +183,7 @@
             <Button
                 android:id="@+id/btnViewLocs"
                 style="?android:attr/buttonBarButtonStyle"
-                android:text="View All"
+                android:text="Add Location"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -199,7 +192,7 @@
             <Button
                 android:id="@+id/btnEditLocs"
                 style="?android:attr/buttonBarButtonStyle"
-                android:text="Edit/Delete"
+                android:text="View All Locations"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
