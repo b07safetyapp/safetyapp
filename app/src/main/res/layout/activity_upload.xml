@@ -167,7 +167,7 @@
             android:layout_height="wrap_content"
             tools:ignore="HardcodedText" />
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/mapFragment"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
