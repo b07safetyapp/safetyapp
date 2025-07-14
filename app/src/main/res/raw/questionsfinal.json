@@ -4,13 +4,13 @@
     "q0": {
       "type": "multi",
       "label": "Where are you located?",
-      "options": ["Toronto", "Vancouver", "Montreal", "Calgary", "Ottawa"],
+      "options": ["Toronto", "Vancouver", "Montreal", "Ottawa", "Halifax"],
       "next": {
         "Toronto": "q1",
         "Vancouver": "q1",
         "Montreal": "q1",
-        "Calgary": "q1",
-        "Ottawa": "q1"
+        "Ottawa": "q1",
+        "Halifax": "q1"
       }
     },
     "q1": {
