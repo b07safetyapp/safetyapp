@@ -1,194 +1,231 @@
 package com.safetyapp.mainapp;
 
-import android.app.ProgressDialog;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.webkit.MimeTypeMap;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
+import android.widget.*;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+import androidx.cardview.widget.CardView;
 
+import com.google.android.gms.maps.*;
+import com.google.android.gms.maps.model.*;
+import com.google.firebase.database.*;
+import com.google.firebase.storage.*;
+
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 
 public class UploadActivity extends AppCompatActivity {
 
-    private static final int PICK_FILE_REQUEST = 1;
+    // File Upload UI
+    @SuppressWarnings("FieldCanBeLocal")
+    private CardView cardUpload;
+    private TextView tvUploadStatus;
+    @SuppressWarnings("FieldCanBeLocal")
+    private Button btnAddTags, btnViewDocs;
+    private ProgressBar progressBar;
 
-    private ImageView ivUploadIcon;
-    private TextView tvStatus;
-    private Button btnChooseFile, btnUpload, btnAddTags, btnViewDocs;
+    // Contact Fields
     private EditText etContactName, etContactRel, etContactPhone;
-    private Button btnAddContact, btnViewContacts;
-    private Button btnAddLocation, btnViewLocations;
+    @SuppressWarnings("FieldCanBeLocal")
+    private Button btnAddContact, btnEditContacts;
 
-    private Uri fileUri;
+    // Location
+    @SuppressWarnings("FieldCanBeLocal")
+    private Button btnAddLoc, btnEditLocs;
+    private LatLng selectedLatLng;
+    private GoogleMap mMap;
+    private SearchView mapSearchView;
+
+    // Firebase
     private StorageReference storageRef;
     private DatabaseReference dbRef;
-    private ProgressDialog progressDialog;
 
-    // Google Maps
-    private GoogleMap mMap;
-    private LatLng selectedLatLng;
+    private Uri fileUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
 
-        // FILE UPLOAD
-        ivUploadIcon = findViewById(R.id.ivUploadIcon);
-        tvStatus = findViewById(R.id.tvStatus);
-        btnChooseFile = findViewById(R.id.btnChooseFile);
-        btnUpload = findViewById(R.id.btnUpload);
-        btnAddTags = findViewById(R.id.btnAddTags);
-        btnViewDocs = findViewById(R.id.btnViewDocs);
+        // Firebase
+        storageRef = FirebaseStorage.getInstance().getReference("uploads");
+        dbRef = FirebaseDatabase.getInstance().getReference();
 
-        // CONTACT FIELDS
+        // Upload Section
+        cardUpload = findViewById(R.id.cardUpload);
+        tvUploadStatus = findViewById(R.id.tvUploadStatus);
+        btnAddTags = findViewById(R.id.btnViewDocs);
+        btnViewDocs = findViewById(R.id.btnEditDocs);
+        progressBar = findViewById(R.id.progressBarUpload);
+
+        cardUpload.setOnClickListener(v -> chooseFile());
+
+        btnAddTags.setOnClickListener(v -> {
+            Toast.makeText(this, "Add Tags screen coming soon", Toast.LENGTH_SHORT).show();
+            // startActivity(new Intent(this, TagActivity.class)); // TODO
+        });
+
+        btnViewDocs.setOnClickListener(v ->
+                startActivity(new Intent(this, FileviewActivity.class))
+        );
+
+        // Contacts
         etContactName = findViewById(R.id.etContactName);
         etContactRel = findViewById(R.id.etContactRel);
         etContactPhone = findViewById(R.id.etContactPhone);
         btnAddContact = findViewById(R.id.btnAddContact);
-        btnViewContacts = findViewById(R.id.btnEditContacts);
+        btnEditContacts = findViewById(R.id.btnEditContacts);
 
-        // LOCATION BUTTONS
-        btnAddLocation = findViewById(R.id.btnViewLocs);
-        btnViewLocations = findViewById(R.id.btnEditLocs);
+        btnAddContact.setOnClickListener(v -> addContact());
+        btnEditContacts.setOnClickListener(v ->
+                startActivity(new Intent(this, ContactActivity.class))
+        );
 
-        // Firebase Refs
-        storageRef = FirebaseStorage.getInstance().getReference("uploads");
-        dbRef = FirebaseDatabase.getInstance().getReference();
-        progressDialog = new ProgressDialog(this);
+        // Locations
+        btnAddLoc = findViewById(R.id.btnViewLocs);
+        btnEditLocs = findViewById(R.id.btnEditLocs);
 
-        // Choose File
-        btnChooseFile.setOnClickListener(v -> openFileChooser());
-
-        // Upload File
-        btnUpload.setOnClickListener(v -> {
-            if (fileUri != null) {
-                uploadFile();
-            } else {
-                Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Add Tags - (to be implemented)
-        btnAddTags.setOnClickListener(v -> {
-            // TODO: Launch AddTagsActivity when implemented
-            Toast.makeText(this, "Add Tags screen coming soon", Toast.LENGTH_SHORT).show();
-        });
-
-        // View Documents
-        btnViewDocs.setOnClickListener(v -> {
-            Intent intent = new Intent(UploadActivity.this, FileviewActivity.class);
-            startActivity(intent);
-        });
-
-        // Add Contact
-        btnAddContact.setOnClickListener(v -> addEmergencyContact());
-
-        // View All Contacts
-        btnViewContacts.setOnClickListener(v -> {
-            Intent intent = new Intent(UploadActivity.this, ContactActivity.class);
-            startActivity(intent);
-        });
-
-        // View Locations
-        btnViewLocations.setOnClickListener(v -> {
-            Intent intent = new Intent(UploadActivity.this, LocationListActivity.class);
-            startActivity(intent);
-        });
-
-        // Add Location
-        btnAddLocation.setOnClickListener(v -> {
+        btnAddLoc.setOnClickListener(v -> {
             if (selectedLatLng == null) {
-                Toast.makeText(this, "Please tap a location on the map", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Select a location on the map", Toast.LENGTH_SHORT).show();
                 return;
             }
-            addSafeLocation(selectedLatLng);
+            addLocation(selectedLatLng);
         });
 
-        // Initialize Google Map
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
-        mapFragment.getMapAsync(googleMap -> {
-            mMap = googleMap;
-            mMap.setOnMapClickListener(latLng -> {
-                selectedLatLng = latLng;
-                mMap.clear();
-                mMap.addMarker(new MarkerOptions().position(latLng).title("Selected Location"));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f));
+        btnEditLocs.setOnClickListener(v ->
+                Toast.makeText(this, "Location List screen coming soon", Toast.LENGTH_SHORT).show()
+                //startActivity(new Intent(this, LocationListActivity.class)) // TODO
+        );
+
+        // Setup Map
+        mapSearchView = new SearchView(this);
+        FrameLayout mapFrame = findViewById(R.id.mapFragment);
+        mapFrame.addView(mapSearchView, new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT));
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mapFragment);
+
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(googleMap -> {
+                mMap = googleMap;
+
+                mMap.setOnMapClickListener(latLng -> {
+                    selectedLatLng = latLng;
+                    mMap.clear();
+                    mMap.addMarker(new MarkerOptions().position(latLng).title("Safe Location"));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                });
+
+                setupSearchView();
             });
-        });
-    }
-
-    private void openFileChooser() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        startActivityForResult(intent, PICK_FILE_REQUEST);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_FILE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            fileUri = data.getData();
-            tvStatus.setText("Selected: " + fileUri.getLastPathSegment());
         }
     }
 
-    private String getFileExtension(Uri uri) {
-        return MimeTypeMap.getSingleton().getExtensionFromMimeType(getContentResolver().getType(uri));
+    private void setupSearchView() {
+        mapSearchView.setQueryHint("Search location");
+        mapSearchView.setIconifiedByDefault(false);
+        mapSearchView.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+
+        mapSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchLocation(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) { return false; }
+        });
     }
 
+    private void searchLocation(String query) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addressList = geocoder.getFromLocationName(query, 1);
+            if (addressList != null && !addressList.isEmpty()) {
+                Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                selectedLatLng = latLng;
+
+                mMap.clear();
+                mMap.addMarker(new MarkerOptions().position(latLng).title(query));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+            } else {
+                Toast.makeText(this, "Location not found", Toast.LENGTH_SHORT).show();
+            }
+        } catch (IOException e) {
+            Toast.makeText(this, "Error finding location", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void chooseFile() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        fileChooserLauncher.launch(intent);
+    }
+
+    private final ActivityResultLauncher<Intent> fileChooserLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    fileUri = result.getData().getData();
+                    uploadFile();
+                }
+            });
+
+    @SuppressLint("SetTextI18n")
     private void uploadFile() {
-        progressDialog.setMessage("Uploading...");
-        progressDialog.show();
+        if (fileUri == null) return;
 
-        String fileName = System.currentTimeMillis() + "." + getFileExtension(fileUri);
+        progressBar.setVisibility(View.VISIBLE); // show
+
+        String ext = MimeTypeMap.getSingleton()
+                .getExtensionFromMimeType(getContentResolver().getType(fileUri));
+        String fileName = System.currentTimeMillis() + "." + ext;
+
         StorageReference fileRef = storageRef.child(fileName);
-
         fileRef.putFile(fileUri)
-                .addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl()
-                        .addOnSuccessListener(uri -> {
-                            String uploadId = dbRef.child("documents").push().getKey();
+                .addOnSuccessListener(taskSnapshot ->
+                        fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                            String id = dbRef.child("documents").push().getKey();
                             HashMap<String, String> fileData = new HashMap<>();
-                            fileData.put("id", uploadId);
+                            fileData.put("id", id);
                             fileData.put("filename", fileName);
                             fileData.put("url", uri.toString());
 
-                            dbRef.child("documents").child(uploadId).setValue(fileData)
+                            assert id != null;
+                            dbRef.child("documents").child(id).setValue(fileData)
                                     .addOnSuccessListener(aVoid -> {
-                                        progressDialog.dismiss();
+                                        progressBar.setVisibility(View.GONE); // hide
                                         Toast.makeText(this, "Upload successful", Toast.LENGTH_SHORT).show();
-                                        tvStatus.setText("Uploaded: " + fileName);
+                                        tvUploadStatus.setText("Uploaded: " + fileName);
                                     })
                                     .addOnFailureListener(e -> {
-                                        progressDialog.dismiss();
-                                        Toast.makeText(this, "Failed to store metadata", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.GONE); // hide
+                                        Toast.makeText(this, "Failed to save metadata", Toast.LENGTH_SHORT).show();
                                     });
                         }))
                 .addOnFailureListener(e -> {
-                    progressDialog.dismiss();
+                    progressBar.setVisibility(View.GONE); // hide
                     Toast.makeText(this, "Upload failed", Toast.LENGTH_SHORT).show();
                 });
     }
 
-    private void addEmergencyContact() {
+    private void addContact() {
         String name = etContactName.getText().toString().trim();
         String rel = etContactRel.getText().toString().trim();
         String phone = etContactPhone.getText().toString().trim();
@@ -205,16 +242,13 @@ public class UploadActivity extends AppCompatActivity {
         contact.put("relationship", rel);
         contact.put("phone", phone);
 
+        assert id != null;
         dbRef.child("contacts").child(id).setValue(contact)
-                .addOnSuccessListener(aVoid ->
-                        Toast.makeText(this, "Contact added", Toast.LENGTH_SHORT).show()
-                )
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Failed to add contact", Toast.LENGTH_SHORT).show()
-                );
+                .addOnSuccessListener(aVoid -> Toast.makeText(this, "Contact added", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(this, "Failed to add contact", Toast.LENGTH_SHORT).show());
     }
 
-    private void addSafeLocation(LatLng latLng) {
+    private void addLocation(LatLng latLng) {
         String id = dbRef.child("locations").push().getKey();
 
         HashMap<String, Object> location = new HashMap<>();
@@ -223,12 +257,9 @@ public class UploadActivity extends AppCompatActivity {
         location.put("lon", latLng.longitude);
         location.put("name", "Safe Location");
 
+        assert id != null;
         dbRef.child("locations").child(id).setValue(location)
-                .addOnSuccessListener(aVoid ->
-                        Toast.makeText(this, "Location added", Toast.LENGTH_SHORT).show()
-                )
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Failed to add location", Toast.LENGTH_SHORT).show()
-                );
+                .addOnSuccessListener(aVoid -> Toast.makeText(this, "Location added", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(this, "Failed to save location", Toast.LENGTH_SHORT).show());
     }
 }
