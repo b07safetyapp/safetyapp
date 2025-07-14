@@ -4,16 +4,13 @@ public class Contact {
     public String name;
     public String relationship;
     public String phone;
+    public String id; // FireBase key
 
-    public Contact(){
-        this.name = "LeBron James";
-        this.relationship = "King James";
-        this.phone = "+1 234 567 8901";
-    }
-
-    public Contact(String name, String relation, String phone){
+    public Contact(){}
+    public Contact(String id, String name, String relation, String phone){
         this.name = name;
         this.relationship = relation;
         this.phone = phone;
+        this.id = id;
     }
 }
