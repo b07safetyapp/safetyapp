@@ -1,0 +1,225 @@
+{
+  "start": "status",
+  "questions": {
+    "status": {
+      "id": "status",
+      "type": "multi",
+      "label": "Select your current status",
+      "options": ["still", "planning", "post"],
+      "next": {
+        "still": "s1",
+        "planning": "p1",
+        "post": "t1"
+      }
+    },
+
+    /* ─── STILL BRANCH (10 qs) ─────────────────────────────────────────── */
+    "s1": {
+      "id": "s1",
+      "type": "rating",
+      "label": "How satisfied are you right now? (1-10)",
+      "next": { "default": "s2" }
+    },
+    "s2": {
+      "id": "s2",
+      "type": "rating",
+      "label": "How often do you communicate openly? (1-10)",
+      "next": { "default": "s3" }
+    },
+    "s3": {
+      "id": "s3",
+      "type": "rating",
+      "label": "How many conflicts occur per month?",
+      "next": {
+        "<=3": "s4_low",
+        "default": "s4_high"
+      }
+    },
+    "s4_low": {
+      "id": "s4_low",
+      "type": "text",
+      "label": "What helps you keep conflicts low?",
+      "next": { "default": "s5" }
+    },
+    "s4_high": {
+      "id": "s4_high",
+      "type": "text",
+      "label": "What’s the main trigger for your conflicts?",
+      "next": { "default": "s5" }
+    },
+    "s5": {
+      "id": "s5",
+      "type": "boolean",
+      "label": "Have you tried counseling together?",
+      "next": {
+        "true": "s6_yes",
+        "false": "s6_no"
+      }
+    },
+    "s6_yes": {
+      "id": "s6_yes",
+      "type": "text",
+      "label": "What was most helpful about counseling?",
+      "next": { "default": "s7" }
+    },
+    "s6_no": {
+      "id": "s6_no",
+      "type": "multi",
+      "label": "What stopped you from trying counseling?",
+      "options": ["Cost", "Time", "Stigma", "Other"],
+      "next": { "default": "s7" }
+    },
+    "s7": {
+      "id": "s7",
+      "type": "multi",
+      "label": "Which activities boost your bond?",
+      "options": ["Travel", "Date nights", "Hobbies", "Deep talks"],
+      "next": { "default": "s8" }
+    },
+    "s8": {
+      "id": "s8",
+      "type": "text",
+      "label": "If you could change one thing today, what would it be?",
+      "next": { "default": "end" }
+    },
+
+    /* ─── PLANNING BRANCH (10 qs) ─────────────────────────────────────── */
+    "p1": {
+      "id": "p1",
+      "type": "rating",
+      "label": "How prepared do you feel? (1-10)",
+      "next": { "default": "p2" }
+    },
+    "p2": {
+      "id": "p2",
+      "type": "boolean",
+      "label": "Have you consulted a lawyer or mediator?",
+      "next": {
+        "true": "p3_yes",
+        "false": "p3_no"
+      }
+    },
+    "p3_yes": {
+      "id": "p3_yes",
+      "type": "text",
+      "label": "What advice did they give you?",
+      "next": { "default": "p4" }
+    },
+    "p3_no": {
+      "id": "p3_no",
+      "type": "text",
+      "label": "What’s holding you back from consulting?",
+      "next": { "default": "p4" }
+    },
+    "p4": {
+      "id": "p4",
+      "type": "multi",
+      "label": "Which documents have you gathered?",
+      "options": ["Bank statements", "Lease/mortgage", "Tax returns", "Insurance policies"],
+      "next": { "default": "p5" }
+    },
+    "p5": {
+      "id": "p5",
+      "type": "text",
+      "label": "What’s your biggest financial concern?",
+      "next": { "default": "p6" }
+    },
+    "p6": {
+      "id": "p6",
+      "type": "boolean",
+      "label": "Do you have a clear living-arrangements plan?",
+      "next": {
+        "true": "p7",
+        "false": "p8"
+      }
+    },
+    "p7": {
+      "id": "p7",
+      "type": "text",
+      "label": "Describe your living-arrangements plan.",
+      "next": { "default": "p9" }
+    },
+    "p8": {
+      "id": "p8",
+      "type": "text",
+      "label": "What help do you need to plan living arrangements?",
+      "next": { "default": "p9" }
+    },
+    "p9": {
+      "id": "p9",
+      "type": "text",
+      "label": "What emotional support would help you most right now?",
+      "next": { "default": "end" }
+    },
+
+    /* ─── POST BRANCH (10 qs) ─────────────────────────────────────────── */
+    "t1": {
+      "id": "t1",
+      "type": "rating",
+      "label": "How are you coping today? (1-10)",
+      "next": { "default": "t2" }
+    },
+    "t2": {
+      "id": "t2",
+      "type": "boolean",
+      "label": "Have you started any new routines since?",
+      "next": {
+        "true": "t3_yes",
+        "false": "t3_no"
+      }
+    },
+    "t3_yes": {
+      "id": "t3_yes",
+      "type": "multi",
+      "label": "Which routines have you started?",
+      "options": ["Exercise", "Journaling", "Meditation", "Socializing"],
+      "next": { "default": "t4" }
+    },
+    "t3_no": {
+      "id": "t3_no",
+      "type": "text",
+      "label": "What’s stopping you from new routines?",
+      "next": { "default": "t4" }
+    },
+    "t4": {
+      "id": "t4",
+      "type": "rating",
+      "label": "How supported do you feel by friends/family? (1-10)",
+      "next": { "default": "t5" }
+    },
+    "t5": {
+      "id": "t5",
+      "type": "boolean",
+      "label": "Have you considered professional support?",
+      "next": {
+        "true": "t6_yes",
+        "false": "t6_no"
+      }
+    },
+    "t6_yes": {
+      "id": "t6_yes",
+      "type": "text",
+      "label": "What would you seek support for?",
+      "next": { "default": "t7" }
+    },
+    "t6_no": {
+      "id": "t6_no",
+      "type": "text",
+      "label": "What’s holding you back from seeking support?",
+      "next": { "default": "t7" }
+    },
+    "t7": {
+      "id": "t7",
+      "type": "text",
+      "label": "What goal do you have for the next month?",
+      "next": { "default": "end" }
+    },
+
+    /* ─── END NODE ───────────────────────────────────────────────────── */
+    "end": {
+      "id": "end",
+      "type": "info",
+      "label": "Thank you! You’ve completed the survey."
+    }
+  }
+}
