@@ -9,6 +9,8 @@ firebaseStorage = "21.0.2"
 firebaseDatabase = "21.0.0"
 
 [libraries]
+google-firebase-database = { module = "com.google.firebase:firebase-database" }
+google-firebase-storage = { module = "com.google.firebase:firebase-storage" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
