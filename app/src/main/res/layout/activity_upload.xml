@@ -45,6 +45,7 @@
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
+                    android:id="@+id/ivUploadIcon"
                     android:contentDescription="UPLOAD"
                     android:src="@drawable/ic_upload"
                     android:layout_width="48dp"
@@ -52,6 +53,7 @@
                     tools:ignore="HardcodedText" />
 
                 <TextView
+                    android:id="@+id/tvUploadStatus"
                     android:text="Tap to upload documents"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp"
@@ -167,12 +169,24 @@
             android:layout_height="wrap_content"
             tools:ignore="HardcodedText" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/mapFragment"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="8dp" />
+            android:layout_height="wrap_content">
+
+            <SearchView
+                android:id="@+id/mapSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:queryHint="Search location" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/mapFragment"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
 
         <LinearLayout
             style="?android:attr/buttonBarStyle"
