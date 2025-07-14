@@ -1,6 +1,18 @@
 {
-  "start": "q1",
+  "start": "q0",
   "items": {
+    "q0": {
+      "type": "multi",
+      "label": "Where are you located?",
+      "options": ["Toronto", "Vancouver", "Montreal", "Calgary", "Ottawa"],
+      "next": {
+        "Toronto": "q1",
+        "Vancouver": "q1",
+        "Montreal": "q1",
+        "Calgary": "q1",
+        "Ottawa": "q1"
+      }
+    },
     "q1": {
       "type": "multi",
       "label": "Why are you using this app?",
