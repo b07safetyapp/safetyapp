@@ -123,20 +123,20 @@
             android:id="@+id/button4"
             android:layout_width="60dp"
             android:layout_height="70dp"
-            android:text="C"
+            android:text="HLP"
             android:backgroundTint="@color/buttonColor"
             android:textSize="12sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title C"
+            android:text="Help Nearby"
             android:textStyle="bold"
             android:layout_marginTop="4dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="C"
+            android:text="Nearby institutions"
             android:textSize="12sp" />
     </LinearLayout>
 

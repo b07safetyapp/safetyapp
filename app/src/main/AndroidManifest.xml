@@ -15,10 +15,6 @@
         android:name="com.safetyapp.mainapp.AppContext"
         >
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-        tools:targetApi="31"/>
-        <activity
             android:name=".SupportConnectionActivity"
             android:exported="false" />
         <activity
