@@ -43,7 +43,6 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
         // switch case for the type of the item
         View view;
         LayoutInflater inflater = LayoutInflater.from(context);
-        questionPresenter.logcurrent();
         switch(viewType){
             case VIEW_TYPE_TEXT:
                 view = inflater.inflate(R.layout.item_text, parent, false);
@@ -137,7 +136,6 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
                         this.questionchoices.remove(v);
                     }
                     notifyItemRangeChanged(position, questionsize);
-                    questionPresenter.logcurrent();
                     // get the next question
                     questionchoices.add(questionPresenter.getcurrentquestion());
                     this.choices = questionPresenter.currentchoices;
@@ -169,6 +167,8 @@ class QuestionaireAdapter extends RecyclerView.Adapter<QuestionaireAdapter.MyVie
     }
 
     public void gohomepage(){
+        // tell the presenter to save the answer content into a json
+        questionPresenter.saveResultsToJson();
         // route to homepage
         Intent i = new Intent(context, HomeActivity.class);
         i.putExtra("mykey", "myvalue");

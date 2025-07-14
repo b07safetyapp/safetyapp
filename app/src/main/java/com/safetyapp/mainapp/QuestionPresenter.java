@@ -2,8 +2,12 @@ package com.safetyapp.mainapp;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Environment;
 import android.renderscript.ScriptGroup;
 import android.util.Log;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -24,6 +28,7 @@ public class QuestionPresenter {
     public static ArrayList<String> currentquestions = new ArrayList<>();
     public static ArrayList<String> currentchoices = new ArrayList<>();
     private AppContext appcontext;
+    private Context ctx;
     private JSONObject root;
 
     public QuestionPresenter(){
@@ -77,7 +82,7 @@ public class QuestionPresenter {
         currentchoices.clear();
         currentquestions.clear();
         // open the resource file
-        Context ctx = appcontext.getContext();
+        ctx = appcontext.getContext();
         InputStream IS;
         Resources resources = ctx.getResources();
         IS = resources.openRawResource(R.raw.questionsfinal);
@@ -115,16 +120,16 @@ public class QuestionPresenter {
         currentquestions.add(newquestion);
         currentchoices.add("");
         logcurrent();
-        Log.d("questions size:", Integer.toString(currentquestions.size()));
-        Log.d("choices size:", Integer.toString(currentchoices.size()));
+        //Log.d("questions size:", Integer.toString(currentquestions.size()));
+        //Log.d("choices size:", Integer.toString(currentchoices.size()));
     }
     public void addquestiontext(String id){
         String newquestion = questions.get(id).getNext().get("next");
         currentquestions.add(newquestion);
         currentchoices.add("");
         logcurrent();
-        Log.d("questions size:", Integer.toString(currentquestions.size()));
-        Log.d("choices size:", Integer.toString(currentchoices.size()));
+        //Log.d("questions size:", Integer.toString(currentquestions.size()));
+        //Log.d("choices size:", Integer.toString(currentchoices.size()));
     }
     public void addquestion(String id){
         currentquestions.add(id);
@@ -132,23 +137,19 @@ public class QuestionPresenter {
     }
 
     public void changechoice(String id, String choice){
-        Log.d("we are changing the choices", "");
         //find the id
         int index = currentquestions.indexOf(id);
-        Log.d("> The choice to switch to is: ", choice);
-        Log.d("> The id to target this choice is: ", id);
-        Log.d("checking what we currently have:", "");
-        Log.d("original currentchoices size:", Integer.toString(currentchoices.size()));
-        Log.d("original currentquestions size:", Integer.toString(currentquestions.size()));
-        Log.d("We will now delete", "");
+        // Log.d("> The choice to switch to is: ", choice);
+        // Log.d("> The id to target this choice is: ", id);
+        // Log.d("checking what we currently have:", "");
+        // Log.d("original currentchoices size:", Integer.toString(currentchoices.size()));
+        // Log.d("original currentquestions size:", Integer.toString(currentquestions.size()));
+        // Log.d("We will now delete", "");
         // remove all that is greater than id
         for (int i = currentquestions.size()-1; i > index; i--){
-            Log.d("removing", currentquestions.get(i));
             currentchoices.remove(i);
             currentquestions.remove(i);
         }
-        Log.d("new currentchoices size:", Integer.toString(currentchoices.size()));
-        Log.d("new currentquestions size:", Integer.toString(currentquestions.size()));
         this.currentchoices.set(index, choice);
         // add a new question
     }
@@ -156,5 +157,25 @@ public class QuestionPresenter {
     public void logcurrent(){
         Log.d("=== currentquestions:", currentquestions.toString());
         Log.d("=== currentchoices::", currentchoices.toString());
+    }
+
+    public void saveResultsToJson(){
+        // create hashmap from two lists
+        HashMap<String, String> temphashmap = new HashMap<>();
+        for (int i = 0; i < currentchoices.toArray().length; i++){
+            temphashmap.put(currentquestions.get(i), currentchoices.get(i));
+        }
+        // convert hashmap into json
+        JSONObject jsonObject = new JSONObject(temphashmap);
+        File myfile = new File(ctx.getFilesDir(), "questionresults.json");
+        try {
+            FileWriter file = new FileWriter(myfile);
+            file.write(jsonObject.toString());
+            file.flush();
+        } catch (Exception e){
+            Log.d("error here:", e.getMessage());
+        }
+        Log.d("", jsonObject.toString());
+        Log.d("saved!!", myfile.getAbsolutePath());
     }
 }
