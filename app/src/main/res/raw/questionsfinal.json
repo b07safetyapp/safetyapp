@@ -132,7 +132,7 @@
     },
     "q13": {
       "type": "multi",
-      "label": "Have you consulted a lawyer or medication?",
+      "label": "Do you have a clear living-arrangements plan?",
       "options": ["Yes", "No"],
       "next": {
         "Yes": "q14",
