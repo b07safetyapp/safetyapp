@@ -51,10 +51,10 @@ public class MenuFragment extends Fragment {
             Intent i = new Intent(getActivity(), HomeActivity.class);
             startActivity(i);
         });
-//        btn4.setOnClickListener(v -> {
-//            Intent i = new Intent(getActivity(), Screen4Activity.class);
-//            startActivity(i);
-//        });
+        btn4.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), SupportConnectionActivity.class);
+            startActivity(i);
+        });
 //        btn5.setOnClickListener(v -> {
 //            Intent i = new Intent(getActivity(), Screen5Activity.class);
 //            startActivity(i);
