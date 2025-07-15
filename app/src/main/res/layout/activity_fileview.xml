@@ -7,13 +7,29 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <!-- Tag Filter Bar -->
+    <GridLayout
+        android:id="@+id/tagFilterLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:alignmentMode="alignMargins"
+        android:columnCount="3"
+        android:padding="8dp"
+        android:rowCount="1"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewFiles" />
+
+
     <!-- RecyclerView for file titles -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFiles"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tagFilterLayout"
         app:layout_constraintBottom_toTopOf="@id/previewScroll"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
