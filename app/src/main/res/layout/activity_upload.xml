@@ -79,7 +79,7 @@
             android:layout_marginTop="4dp">
 
             <Button
-                android:id="@+id/btnViewDocs"
+                android:id="@+id/btnAddTags"
                 style="?android:attr/buttonBarButtonStyle"
                 android:text="Add Tags"
                 android:layout_weight="1"
@@ -88,7 +88,7 @@
                 tools:ignore="HardcodedText" />
 
             <Button
-                android:id="@+id/btnEditDocs"
+                android:id="@+id/btnViewDocs"
                 style="?android:attr/buttonBarButtonStyle"
                 android:text="View All Documents"
                 android:layout_weight="1"
@@ -204,7 +204,7 @@
             android:layout_marginTop="4dp">
 
             <Button
-                android:id="@+id/btnViewLocs"
+                android:id="@+id/btnAddLocs"
                 style="?android:attr/buttonBarButtonStyle"
                 android:text="Add Location"
                 android:layout_weight="1"

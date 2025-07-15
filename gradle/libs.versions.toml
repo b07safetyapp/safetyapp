@@ -1,5 +1,6 @@
 [versions]
 agp = "8.8.2"
+flexbox = "3.0.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -9,6 +10,7 @@ firebaseStorage = "21.0.2"
 firebaseDatabase = "21.0.0"
 
 [libraries]
+flexbox = { module = "com.google.android:flexbox", version.ref = "flexbox" }
 google-firebase-database = { module = "com.google.firebase:firebase-database" }
 google-firebase-storage = { module = "com.google.firebase:firebase-storage" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
