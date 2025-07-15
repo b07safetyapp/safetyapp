@@ -44,4 +44,6 @@ dependencies {
     implementation('com.google.android.gms:play-services-maps:19.2.0')
     implementation libs.google.firebase.storage
     implementation libs.google.firebase.database
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
 }
