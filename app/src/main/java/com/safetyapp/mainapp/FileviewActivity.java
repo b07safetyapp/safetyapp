@@ -23,10 +23,11 @@ import java.util.*;
 public class FileviewActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private LinearLayout previewLayout, buttonLayout;
+    private LinearLayout /* previewLayout,*/ buttonLayout;
     private ScrollView previewScroll;
     private ImageView previewImage;
     private TextView previewTitle;
+    @SuppressWarnings("FieldCanBeLocal")
     private Button buttonAddTags, buttonDeleteFile;
 
     private FirebaseStorage storage;
@@ -36,8 +37,13 @@ public class FileviewActivity extends AppCompatActivity {
     private String selectedFileUrl;
     private String lastUploadedFileId;
 
+    @SuppressWarnings("FieldMayBeFinal")
     private List<String> allFileNames = new ArrayList<>(); // All filenames
+
+    @SuppressWarnings("FieldMayBeFinal")
     private Map<String, List<String>> allTags = new HashMap<>(); // fileId -> tags
+
+    @SuppressWarnings("FieldMayBeFinal")
     private Set<String> activeTagFilters = new HashSet<>();
 
     private FileAdapter adapter;
@@ -49,7 +55,7 @@ public class FileviewActivity extends AppCompatActivity {
 
         // UI references
         recyclerView = findViewById(R.id.recyclerViewFiles);
-        previewLayout = findViewById(R.id.previewLayout);
+        //previewLayout = findViewById(R.id.previewLayout);
         previewScroll = findViewById(R.id.previewScroll);
         buttonLayout = findViewById(R.id.buttonLayout);
         previewImage = findViewById(R.id.previewImage);
@@ -179,7 +185,7 @@ public class FileviewActivity extends AppCompatActivity {
             List<String> tags = allTags.getOrDefault(fileId, new ArrayList<>());
 
             // If no filter is active OR tags match filter, show file
-            if (activeTagFilters.isEmpty() || !Collections.disjoint(tags, activeTagFilters)) {
+            if (activeTagFilters.isEmpty() || !Collections.disjoint(Objects.requireNonNull(tags), activeTagFilters)) {
                 filtered.add(fileName);
             }
         }
@@ -198,9 +204,9 @@ public class FileviewActivity extends AppCompatActivity {
 
         // Define fixed tags + their colors
         Map<String, Integer> tagColors = new LinkedHashMap<>();
-        tagColors.put("A", Color.RED);
-        tagColors.put("B", Color.BLUE);
-        tagColors.put("C", Color.GREEN);
+        tagColors.put("Identification", Color.RED);
+        tagColors.put("Legal Documents", Color.BLUE);
+        tagColors.put("Financial Statements", Color.GREEN);
 
         Set<String> selectedTags = new HashSet<>();
 
@@ -261,7 +267,7 @@ public class FileviewActivity extends AppCompatActivity {
     // Initializes tag filter buttons (A, B, C)
     private void setupTagFilterBar() {
         GridLayout tagFilterLayout = findViewById(R.id.tagFilterLayout);
-        String[] tags = {"A", "B", "C"};
+        String[] tags = {"Identification", "Legal Documents", "Financial Statements"};
 
         for (String tag : tags) {
             TextView tagView = new TextView(this);
@@ -273,9 +279,9 @@ public class FileviewActivity extends AppCompatActivity {
 
             GradientDrawable bg = (GradientDrawable) tagView.getBackground();
             switch (tag) {
-                case "A": bg.setColor(Color.RED); break;
-                case "B": bg.setColor(Color.BLUE); break;
-                case "C": bg.setColor(Color.GREEN); break;
+                case "Identification": bg.setColor(Color.RED); break;
+                case "Legal Documents": bg.setColor(Color.BLUE); break;
+                case "Financial Statements": bg.setColor(Color.GREEN); break;
             }
 
             tagView.setOnClickListener(v -> {

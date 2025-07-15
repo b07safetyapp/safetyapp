@@ -56,9 +56,9 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.ViewHolder> {
                     tagView.setAlpha(1f);
                     GradientDrawable bg = (GradientDrawable) tagView.getBackground();
                     switch (tag) {
-                        case "A": bg.setColor(Color.RED); break;
+                        case Identification: bg.setColor(Color.RED); break;
                         case "B": bg.setColor(Color.BLUE); break;
-                        case "C": bg.setColor(Color.GREEN); break;
+                        case "Financial Statements": bg.setColor(Color.GREEN); break;
                         default: bg.setColor(Color.GRAY);
                     }
                     tagContainer.addView(tagView);
