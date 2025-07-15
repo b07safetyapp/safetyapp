@@ -287,9 +287,9 @@ public class UploadActivity extends AppCompatActivity {
 
         // Fixed tags with their colors
         Map<String, Integer> tagColors = new LinkedHashMap<>();
-        tagColors.put("A", Color.RED);
-        tagColors.put("B", Color.BLUE);
-        tagColors.put("C", Color.GREEN);
+        tagColors.put("Identification", Color.RED);
+        tagColors.put("Legal Documents", Color.BLUE);
+        tagColors.put("Financial Statements", Color.GREEN);
 
         Set<String> selectedTags = new HashSet<>();
 
