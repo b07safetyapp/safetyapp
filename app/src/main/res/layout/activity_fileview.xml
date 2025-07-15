@@ -45,7 +45,8 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:background="#EEEEEE"
-                android:padding="8dp" />
+                android:padding="8dp"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:id="@+id/previewImage"
