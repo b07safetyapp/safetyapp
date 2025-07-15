@@ -54,7 +54,7 @@
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
-                android:src="@drawable/ic_upload"
+                android:src="@drawable/ic_file"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
     </ScrollView>
