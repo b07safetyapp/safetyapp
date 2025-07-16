@@ -28,17 +28,19 @@
             android:backgroundTint="@color/buttonColor"
             android:text="A"
             android:textSize="12sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title A"
-            android:textStyle="bold"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="4dp"
+            android:text="Login"
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A"
-            android:textSize="12sp"/>
+            android:text="Test for Login"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
