@@ -14,16 +14,17 @@ import java.io.IOException;
 import java.util.*;
 
 
-public class SupportConnectionActivity extends AppCompatActivity {
+public class SupportConnectionActivity extends BaseActivity {
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_home;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_support_connection);
 
-
-
-        // Temp, will change later
         String userCity = "Toronto";
         // read the current city from the saved questionaire json
         // open the file and parse into json

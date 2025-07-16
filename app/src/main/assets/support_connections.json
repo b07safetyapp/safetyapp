@@ -2,37 +2,37 @@
   "Toronto": [
         {
           "name": "Toronto Police Service",
-          "category": "police",
+          "category": "Police",
           "contact": "911 (Emergency), 416-808-2222 (Non-Emergency)",
           "website": "https://www.tps.ca/"
         },
         {
           "name": "Victim Services Toronto",
-          "category": "victim service",
+          "category": "Victim Service",
           "contact": "416-808-7066",
           "website": "https://www.victimservicestoronto.com/"
         },
         {
           "name": "Victim/Witness Assistance Program",
-          "category": "hotline",
+          "category": "Hotline",
           "contact": "1-888-579-2888 (Toll-free), 416-314-2447",
           "website": "https://www.ontario.ca/page/victimwitness-assistance-program"
         },
         {
           "name": "211 Ontario",
-          "category": "hotline",
+          "category": "Hotline",
           "contact": "211",
           "website": "https://www.211ontario.ca/"
         },
         {
           "name": "Legal Aid Ontario",
-          "category": "legal aid",
+          "category": "Legal Aid",
           "contact": "1-800-668-8258",
           "website": "https://www.legalaid.on.ca/"
         },
         {
           "name": "Interval House",
-          "category": "shelter",
+          "category": "Shelter",
           "contact": "1-888-801-7337, 416-924-1411",
           "website": "https://www.intervalhouse.ca/"
         }
@@ -42,32 +42,32 @@
 
   "Montreal": [
         {
-          "name": "Service de police de la Ville de Montreal",
-          "category": "police",
+          "name": "Service de Police de la Ville de Montreal",
+          "category": "Police",
           "contact": "911 (Emergency), 514-280-2222 (Non-Emergency)",
           "website": "https://spvm.qc.ca/"
         },
         {
           "name": "CAVAC",
-          "category": "victim service",
+          "category": "Victim Service",
           "contact": "1-866-532-2822",
           "website": "https://cavac.qc.ca/"
         },
         {
           "name": "SOS Violence Conjugale",
-          "category": "hotline",
+          "category": "Hotline",
           "contact": "1-800-363-9010",
           "website": "https://sosviolenceconjugale.ca"
         },
         {
           "name": "Commission des services juridiques",
-          "category": "legal aid",
+          "category": "Legal Aid",
           "contact": "1-800-842-2213",
           "website": "https://www.csj.qc.ca/"
         },
         {
           "name": "Le Chainon",
-          "category": "shelter",
+          "category": "Shelter",
           "contact": "514-845-0151",
           "website": "https://lechainon.org/"
         }
@@ -77,43 +77,43 @@
   "Ottawa": [
         {
           "name": "Ottawa Police Service",
-          "category": "police",
+          "category": "Police",
           "contact": "911 (Emergency), 613-236-1222 (Non-Emergency)",
           "website": "https://www.ottawapolice.ca/"
         },
         {
           "name": "Ottawa Victim Services",
-          "category": "victim service",
+          "category": "Victim Service",
           "contact": "613-238-2762",
           "website": "https://www.ovs-svo.com/"
         },
         {
           "name": "Distress Centre of Ottawa and Region",
-          "category": "hotline",
+          "category": "Hotline",
           "contact": "613-238-3311",
           "website": "https://www.dcottawa.on.ca/"
         },
         {
           "name": "211 Ontario",
-          "category": "hotline",
+          "category": "Hotline",
           "contact": "211",
           "website": "https://www.211ontario.ca/"
         },
         {
           "name": "Legal Aid Ontario",
-          "category": "legal aid",
+          "category": "Legal Aid",
           "contact": "1-800-668-8258",
           "website": "https://www.legalaid.on.ca/"
         },
         {
           "name": "Community Legal Services of Ottawa",
-          "category": "legal aid",
+          "category": "Legal Aid",
           "contact": "613-733-0140",
           "website": "https://www.clsottawa.ca/"
         },
         {
           "name": "Nelson House of Ottawa-Carleton",
-          "category": "shelter",
+          "category": "Shelter",
           "contact": "613-225-0630 (Main Line), 613-225-3129 (Crisis Line)",
           "website": "https://www.nelsonhouse.on.ca/"
         }        
@@ -124,31 +124,31 @@
   "Vancouver": [
         {
           "name": "Vancouver Police Department",
-          "category": "police",
+          "category": "Police",
           "contact": "911 (Emergency), 604-717-3321 (Non-Emergency)",
           "website": "https://vpd.ca/"
         },
         {
           "name": "Ending Violence Association of BC",
-          "category": "victim service",
+          "category": "Victim Service",
           "contact": "1-877-633-2505",
           "website": "https://endingviolence.org/"
         },
         {
           "name": "VictimLinkBC",
-          "category": "hotline",
+          "category": "Hotline",
           "contact": "1-800-563-0808",
           "website": "https://victimlinkbc.ca/"
         },
         {
           "name": "WISH Drop-In Centre Society",
-          "category": "shelter",
+          "category": "Shelter",
           "contact": "604-669-9474",
           "website": "https://wish-vancouver.net/"
         },
         {
           "name": "Legal Aid BC",
-          "category": "legal aid",
+          "category": "Legal Aid",
           "contact": "1-866-577-2525",
           "website": "https://www.legalaid.bc.ca/"
         }
@@ -159,31 +159,31 @@
   "Halifax": [
         {
           "name": "Halifax Regional Police",
-          "category": "police",
+          "category": "Police",
           "contact": "911 (Emergency), 902-490-5020 (Non-Emergency)",
           "website": "https://www.halifax.ca/safety-security/police"
         },
         {
           "name": "Legal Aid Nova Scotia",
-          "category": "legal aid",
+          "category": "Legal Aid",
           "contact": "902-424-5616",
           "website": "https://www.nslegalaid.ca/"
         },
         {
           "name": "Department of Justice Victim Services",
-          "category": "victim service",
+          "category": "Victim Service",
           "contact": "902-424-3309",
           "website": "https://novascotia.ca/just/victim_services/"
         },
         {
           "name": "Bryony House",
-          "category": "shelter",
+          "category": "Shelter",
           "contact": "902-422-7650",
           "website": "https://bryonyhouse.ca/"
         },
         {
           "name": "211 Nova Scotia",
-          "category": "hotline",
+          "category": "Hotline",
           "contact": "211",
           "website": "https://ns.211.ca/"
         }
