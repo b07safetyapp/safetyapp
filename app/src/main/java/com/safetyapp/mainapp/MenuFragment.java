@@ -39,10 +39,11 @@ public class MenuFragment extends Fragment {
         Button btn5 = root.findViewById(R.id.button5);
         Button btn6 = root.findViewById(R.id.button6);
 
-//        btn1.setOnClickListener(v -> {
-//            Intent i = new Intent(getActivity(), Screen1Activity.class);
-//            startActivity(i);
-//        });
+        btn1.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        });
+
         btn2.setOnClickListener(v -> {
             Intent i = new Intent(getActivity(), QuestionaireActivity.class);
             startActivity(i);
