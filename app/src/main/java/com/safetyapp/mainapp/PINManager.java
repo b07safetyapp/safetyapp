@@ -9,45 +9,33 @@ import androidx.security.crypto.MasterKey;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 public class PINManager {
-    private static final String PIN_KEY = "user_pin";
+    private static final String PREFS_NAME = "MyPrefs";
+    private static final String PIN_KEY = "saved_pin";
+    private static final String ATTEMPTS_KEY = "pin_attempts";
 
-    private SharedPreferences getPrefs (Context context) throws GeneralSecurityException, IOException{
-        MasterKey masterKey = new MasterKey.Builder(context)
-                .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-                .build();
-        return EncryptedSharedPreferences.create(
-                context,
-                "secure_prefs",
-                masterKey,
-                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        );
-    }
-    public void savePin(Context context, String pin) {
-        try {
-            SharedPreferences prefs = getPrefs(context);
-            prefs.edit().putString(PIN_KEY, pin).apply();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static String getSavedPin(Context context) {
+        return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+                .getString(PIN_KEY, null);
     }
 
-    public String getSavedPin(Context context) {
-        try {
-            SharedPreferences prefs = getPrefs(context);
-            return prefs.getString(PIN_KEY, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    public static void savePin(Context context, String pin) {
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+                .edit().putString(PIN_KEY, pin).apply();
     }
 
-    public void clearPin(Context context) {
-        try {
-            SharedPreferences prefs = getPrefs(context);
-            prefs.edit().remove(PIN_KEY).apply();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static int getAttempts(Context context) {
+        return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+                .getInt(ATTEMPTS_KEY, 0);
+    }
+
+    public static void incrementAttempts(Context context) {
+        int current = getAttempts(context);
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+                .edit().putInt(ATTEMPTS_KEY, current + 1).apply();
+    }
+
+    public static void resetAttempts(Context context) {
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+                .edit().putInt(ATTEMPTS_KEY, 0).apply();
     }
 }
