@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- ───────── 1. EMERGENCY INFO STORAGE ───────── -->
+        <TextView
+            android:text="Emergency Info Storage"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:text="Store documents to pack (IDs, court orders…)"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardUpload"
+            card_view:cardElevation="4dp"
+            card_view:cardCornerRadius="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/ivUploadIcon"
+                    android:contentDescription="UPLOAD"
+                    android:src="@drawable/ic_upload"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/tvUploadStatus"
+                    android:text="Tap to upload documents"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="HardcodedText" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarUpload"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:id="@+id/btnAddTags"
+                style="?android:attr/buttonBarButtonStyle"
+                android:text="Add Tags"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/btnViewDocs"
+                style="?android:attr/buttonBarButtonStyle"
+                android:text="View All Documents"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <!-- ───────── 2. EMERGENCY CONTACTS ───────── -->
+        <TextView
+            android:layout_marginTop="24dp"
+            android:text="Emergency Contacts"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="Autofill,HardcodedText,TextFields" />
+
+        <!-- Name -->
+        <EditText
+            android:id="@+id/etContactName"
+            android:hint="Full Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@android:color/darker_gray"
+            tools:ignore="Autofill,HardcodedText,TextFields" />
+
+        <!-- Relationship -->
+        <EditText
+            android:id="@+id/etContactRel"
+            android:hint="Relationship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@android:color/darker_gray"
+            tools:ignore="Autofill,HardcodedText,TextFields" />
+
+        <!-- Phone -->
+        <EditText
+            android:id="@+id/etContactPhone"
+            android:hint="@string/phone_number_ex"
+            android:autofillHints="phone"
+            android:inputType="phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@android:color/darker_gray" />
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btnAddContact"
+                style="?android:attr/buttonBarButtonStyle"
+                android:text="Add Contact"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/btnEditContacts"
+                style="?android:attr/buttonBarButtonStyle"
+                android:text="View All Contacts"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+
+        <!-- ───────── 3. SAFE LOCATION ───────── -->
+        <TextView
+            android:layout_marginTop="24dp"
+            android:text="Add Safe Location"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <SearchView
+                android:id="@+id/mapSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:queryHint="Search location" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/mapFragment"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:id="@+id/btnAddLocs"
+                style="?android:attr/buttonBarButtonStyle"
+                android:text="Add Location"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/btnEditLocs"
+                style="?android:attr/buttonBarButtonStyle"
+                android:text="View All Locations"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
