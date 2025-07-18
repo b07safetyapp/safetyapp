@@ -9,4 +9,7 @@
     <string name="login_msg">I already have an account, log in instead</string>
     <string name="disclaimer">I understand that this app is not a substitute for emergency services. All information provided within this app is not guaranteed to prevent mental or physical harm.</string>
     <string name="phone_number_ex"><![CDATA[Phone Number (e.g. +1 555 123 4567)]]></string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Log In</string>
 </resources>

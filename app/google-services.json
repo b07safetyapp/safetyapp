@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "351671932207",
+    "firebase_url": "https://b07-firebase-app-default-rtdb.firebaseio.com",
+    "project_id": "b07-firebase-app",
+    "storage_bucket": "b07-firebase-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351671932207:android:c30c67e14ec956c22c7dda",
+        "android_client_info": {
+          "package_name": "com.safetyapp.mainapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqB324hHCsoozhDpWxI-GZ48o5DZh7sIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
