@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle("Default Page");
 
-
     }
     public void gousersetup(View V){
         // route to homepage
