@@ -37,17 +37,21 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         setTitle("Default Page");
-        // check the login
 
     }
     public void gousersetup(View V){
-       Log.d("going", "going to user setup");
+        // route to homepage
+        Intent i = new Intent(this, SignupActivity.class);
+        startActivity(i);
+    }
+    public void gouserlogin(View V){
+        // route to homepage
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
     }
     public void gohomepage(View V){
-        Log.d("going", "going to home page");
         // route to homepage
         Intent i = new Intent(this, HomeActivity.class);
-        i.putExtra("mykey", "myvalue");
         startActivity(i);
     }
 }
