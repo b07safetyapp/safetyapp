@@ -24,7 +24,7 @@ public class PlanPresenter {
 
     // parsing the json
 
-    private static ArrayList<String> tips = new ArrayList<>();
+    private static ArrayList<String> tipsarr = new ArrayList<>();
     private static ArrayList<String> questions;
     private static ArrayList<String> choices;
     public static ArrayList<String> currentchecks = new ArrayList<>();
@@ -70,7 +70,6 @@ public class PlanPresenter {
             JSONObject planObj = root.getJSONObject(key);
             JSONObject conditions = planObj.getJSONObject("Criteria");
             JSONArray tips = conditions.getJSONArray("Tips");
-            List<String> tipsarr = new ArrayList<String>();
             for (Iterator<String> i = root.keys(); i.hasNext(); ) {
                 String keyy = i.next();
                 JSONArray conditionlist = conditions.getJSONArray(keyy);
