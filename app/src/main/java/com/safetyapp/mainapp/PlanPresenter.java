@@ -32,19 +32,19 @@ public class PlanPresenter {
     private static Context ctx;
     private JSONObject root;
 
-    public PlanPresenter(){
+    public PlanPresenter() {
         // get context
         this.appcontext = new AppContext();
-        try{
+        try {
             loadplansfromjson();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.err.println(e);
         }
         // add the default question to the questions list and choices list
     }
 
 
-    public void loadplansfromjson() throws IOException, JSONException{
+    public void loadplansfromjson() throws IOException, JSONException {
         // purge everything (for testing)
         currentchecks.clear();
         // open the resource file
@@ -71,20 +71,20 @@ public class PlanPresenter {
             JSONObject conditions = planObj.getJSONObject("Criteria");
             JSONArray tips = conditions.getJSONArray("Tips");
             List<String> tipsarr = new ArrayList<String>();
-            for (Iterator<String> i = root.keys(); i.hasNext();){
+            for (Iterator<String> i = root.keys(); i.hasNext(); ) {
                 String keyy = i.next();
                 JSONArray conditionlist = conditions.getJSONArray(keyy);
                 ArrayList<String> conditionarr = new ArrayList<String>();
-                for(int v = 0; v < conditionlist.length(); v++){
+                for (int v = 0; v < conditionlist.length(); v++) {
                     conditionarr.add(conditionlist.getJSONObject(v).getString("name"));
                 }
                 // locate the key within questions
                 int keyindex = conditionarr.indexOf(keyy);
-                if (keyindex == -1){
+                if (keyindex == -1) {
                     continue;
                 }
-                if (conditionarr.contains(choices.get(keyindex))){
-                    for (int q = 0; q < tipsarr.toArray().length; q++){
+                if (conditionarr.contains(choices.get(keyindex))) {
+                    for (int q = 0; q < tipsarr.toArray().length; q++) {
                         tipsarr.add(tipsarr.get(q));
                     }
                 }
@@ -92,3 +92,4 @@ public class PlanPresenter {
             // create a json map from the current json
         }
     }
+}

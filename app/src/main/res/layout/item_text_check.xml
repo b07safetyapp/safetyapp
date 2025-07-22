@@ -12,7 +12,7 @@
         android:textStyle="bold"
         android:textSize="18sp"
         android:text="Task 1: Do so and so and do it well"
-        android:layout_width="0"
+        android:layout_width="0px"
         />
 
     <CheckBox
