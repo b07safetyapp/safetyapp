@@ -1,5 +1,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -8,30 +9,33 @@
     android:gravity="center">
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/settings"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Button 1"
+        android:text="Settings"
         android:textColor="@android:color/white"
-        android:background="?attr/selectableItemBackgroundBorderless"/>
+        android:background="?attr/selectableItemBackgroundBorderless"
+        tools:ignore="HardcodedText" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/logout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Button 2"
+        android:text="Log out"
         android:textColor="@android:color/white"
-        android:background="?attr/selectableItemBackgroundBorderless"/>
+        android:background="?attr/selectableItemBackgroundBorderless"
+        tools:ignore="HardcodedText" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/exitbtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Button 3"
+        android:text="Emergency"
         android:textColor="@android:color/white"
-        android:background="?attr/selectableItemBackgroundBorderless"/>
+        android:background="?attr/selectableItemBackgroundBorderless"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>
