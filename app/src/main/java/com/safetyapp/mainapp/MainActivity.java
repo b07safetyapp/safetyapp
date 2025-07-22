@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle("Default Page");
         // check the login
-        QuestionPresenter mypresenter = new QuestionPresenter();
-
 
     }
     public void gousersetup(View V){
