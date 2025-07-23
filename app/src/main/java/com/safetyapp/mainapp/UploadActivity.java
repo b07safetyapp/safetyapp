@@ -29,8 +29,12 @@ import android.graphics.drawable.GradientDrawable;
 import java.io.IOException;
 import java.util.*;
 
-public class UploadActivity extends AppCompatActivity {
+public class UploadActivity extends BaseActivity {
 
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_upload;
+    }
     // File Upload UI
     @SuppressWarnings("FieldCanBeLocal")
     CardView cardUpload;
@@ -63,7 +67,6 @@ public class UploadActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload);
 
         // Firebase refs
         storageRef = FirebaseStorage.getInstance().getReference("uploads");

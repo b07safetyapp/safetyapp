@@ -14,14 +14,15 @@ import java.io.IOException;
 import java.util.*;
 
 
-public class SupportConnectionActivity extends AppCompatActivity {
+public class SupportConnectionActivity extends BaseActivity {
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_support_connection;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_support_connection);
-
-
 
         // Temp, will change later
         String userCity = "Toronto";
