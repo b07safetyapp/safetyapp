@@ -10,6 +10,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Fragment at the top -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/topMenuBarFragment"
+            android:name="com.safetyapp.mainapp.TopMenuBarFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_topmenubar" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
