@@ -2,6 +2,10 @@ package com.safetyapp.mainapp;
 
 import android.content.Context;
 import android.content.res.Resources;
+
+import java.io.FileInputStream;
+import java.lang.reflect.Array;
+import java.nio.file.Files;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -24,10 +28,10 @@ public class PlanPresenter {
 
     // parsing the json
 
-    private static ArrayList<String> tips = new ArrayList<>();
-    private static ArrayList<String> questions;
-    private static ArrayList<String> choices;
-    public static ArrayList<String> currentchecks = new ArrayList<>();
+    private static ArrayList<String> tipsarr = new ArrayList<>();
+    private static ArrayList<String> questions = new ArrayList<>();
+    private static ArrayList<String> choices = new ArrayList<>();
+    public static ArrayList<Boolean> currentchecks = new ArrayList<>();
     private static AppContext appcontext;
     private static Context ctx;
     private JSONObject root;
@@ -35,7 +39,9 @@ public class PlanPresenter {
     public PlanPresenter() {
         // get context
         this.appcontext = new AppContext();
+        this.ctx = appcontext.getContext();
         try {
+            readquestionchoicesfromjson();
             loadplansfromjson();
         } catch (Exception e) {
             System.err.println(e);
@@ -45,8 +51,10 @@ public class PlanPresenter {
 
 
     public void loadplansfromjson() throws IOException, JSONException {
-        // purge everything (for testing)
+        // purge everything
         currentchecks.clear();
+        tipsarr.clear();
+        Log.d("hello everynan", "");
         // open the resource file
         ctx = appcontext.getContext();
         InputStream IS;
@@ -69,27 +77,74 @@ public class PlanPresenter {
             // get the current json from this key
             JSONObject planObj = root.getJSONObject(key);
             JSONObject conditions = planObj.getJSONObject("Criteria");
-            JSONArray tips = conditions.getJSONArray("Tips");
-            List<String> tipsarr = new ArrayList<String>();
-            for (Iterator<String> i = root.keys(); i.hasNext(); ) {
+            // get the list of tips
+            JSONArray tipjson = planObj.getJSONArray("Tips");
+            ArrayList<String> tips = new ArrayList<>();
+            for (int i = 0; i < tipjson.length(); i++) {
+                tips.add(tipjson.getString(i));
+            }
+            // check if all conditions are met before adding tips
+            boolean all_satisfied = true;
+            for (Iterator<String> i = conditions.keys(); i.hasNext(); ) {
                 String keyy = i.next();
-                JSONArray conditionlist = conditions.getJSONArray(keyy);
-                ArrayList<String> conditionarr = new ArrayList<String>();
-                for (int v = 0; v < conditionlist.length(); v++) {
-                    conditionarr.add(conditionlist.getJSONObject(v).getString("name"));
+                JSONArray conditionslist = conditions.getJSONArray(keyy);
+                ArrayList<String> conditionsreq = new ArrayList<>();
+                for (int c = 0; c < conditionslist.length(); c++) {
+                    conditionsreq.add(conditionslist.getString(c));
                 }
                 // locate the key within questions
-                int keyindex = conditionarr.indexOf(keyy);
+                int keyindex = questions.indexOf(keyy);
                 if (keyindex == -1) {
+                    all_satisfied = false;
                     continue;
                 }
-                if (conditionarr.contains(choices.get(keyindex))) {
-                    for (int q = 0; q < tipsarr.toArray().length; q++) {
-                        tipsarr.add(tipsarr.get(q));
-                    }
+                if (!conditionsreq.contains(choices.get(keyindex))) {
+                    all_satisfied = false;
+                }
+            }
+            if (all_satisfied == true){
+                for (int i = 0 ; i < tips.toArray().length; i++){
+                    tipsarr.add(tips.get(i));
+                    currentchecks.add(false);
                 }
             }
             // create a json map from the current json
         }
+        for (int i = 0; i < tipsarr.toArray().length; i++){
+            Log.d("current tips[i] :", tipsarr.get(i));
+        }
+    }
+
+    public void readquestionchoicesfromjson() throws IOException, JSONException{
+        // open the json file
+        File myfile = new File(ctx.getFilesDir(), "questionresults.json");
+        // parse the json file into a json object
+        InputStream inputStream = new FileInputStream(myfile);
+        StringBuilder resultStringBuilder = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                resultStringBuilder.append(line).append("\n");
+            }
+        }
+        String data = resultStringBuilder.toString();
+        // parse this json and get each corresponding key
+        JSONObject root = new JSONObject(data);
+        // create a list of the keys and values
+        Iterator<String> rootkeys = root.keys();
+        // populate each list
+        while(rootkeys.hasNext()){
+            String currkey = rootkeys.next();
+            questions.add(currkey);
+            choices.add(root.getString(currkey));
+        }
+    }
+
+    public ArrayList<String> getTipsarr(){
+        return this.tipsarr;
+    }
+
+    public ArrayList<Boolean> getChecks(){
+        return this.currentchecks;
     }
 }

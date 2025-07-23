@@ -3,7 +3,7 @@
     "Criteria" : {
       "q1" : ["Family"],
       "q1family" : ["Not safe", "Rarely safe", "Somewhat safe"],
-      "q2family" : ["Often", "Rarely"],
+      "q2family" : ["Often", "Rarely"]
     },
     "Tips" : ["Disclose that you do not feel satisfied with this relationship"]
   },
@@ -50,5 +50,5 @@
       "q5" : ["No"]
     },
     "Tips" : ["Seek a nearby relationship counseller"]
-  },
+  }
 }

@@ -157,7 +157,7 @@
             android:id="@+id/button5"
             android:layout_width="60dp"
             android:layout_height="70dp"
-            android:text="D"
+            android:text="Plan"
             android:backgroundTint="@color/buttonColor"
             android:textSize="12sp"/>
         <TextView
@@ -191,20 +191,20 @@
             android:layout_width="60dp"
             android:layout_height="70dp"
             android:backgroundTint="@color/buttonColor"
-            android:text="E"
+            android:text="Upload Box"
             android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Title E"
+            android:text="Secure File Storage"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E"
+            android:text="Upload files"
             android:textSize="12sp" />
     </LinearLayout>
 
