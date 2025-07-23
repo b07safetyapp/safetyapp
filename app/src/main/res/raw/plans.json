@@ -5,7 +5,7 @@
       "q1family" : ["Not safe", "Rarely safe", "Somewhat safe"],
       "q2family" : ["Often", "Rarely"]
     },
-    "Tips" : ["Disclose that you do not feel satisfied with this relationship"]
+    "Tips" : ["Disclose that you do not feel satisfied with this relationship", "Find extended family or friends who can support your during these times"]
   },
   "RomanticRelationshipBad": {
     "Criteria" : {
@@ -13,13 +13,26 @@
       "q1romantic" : ["Somewhat satisfied", "Rarely satisfied", "Not satisfied"],
       "q2" : ["Leaving"]
     },
-    "Tips" : ["Disclose that you do not feel satisfied with this relationship"]
+    "Tips" : ["Disclose that you do not feel satisfied with this relationship", "Find family or friends who can support you during these times"]
+  },
+  "RomanticRelationshipLeft": {
+    "Criteria" : {
+      "q2" : ["Left"]
+    },
+    "Tips" : ["Ensure that you remove contact with this person", "Explain why you left this person to a trusted friend, and make sure they can easily contact you"]
   },
   "NoHousing": {
     "Criteria" : {
       "q13" : ["No"]
     },
     "Tips" : ["Ask a trusted person if they are willing to let you stay with them"]
+  },
+  "NoHouseChild": {
+    "Criteria" : {
+      "q13" : ["No"],
+      "q131" : ["Yes"]
+    },
+    "Tips" : ["Ensure your child has access to shelter and clean living facilities", "Hire a nanny if required"]
   },
   "NoMediator": {
     "Criteria" : {

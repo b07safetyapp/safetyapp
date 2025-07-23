@@ -172,6 +172,15 @@
       "label": "Do you have a clear living-arrangements plan?",
       "options": ["Yes", "No"],
       "next": {
+        "Yes": "q131",
+        "No": "q131"
+      }
+    },
+    "q131": {
+      "type": "multi",
+      "label": "Do you have a children?",
+      "options": ["Yes", "No"],
+      "next": {
         "Yes": "q14",
         "No": "q14"
       }
