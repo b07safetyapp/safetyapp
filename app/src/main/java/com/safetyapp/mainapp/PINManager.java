@@ -1,13 +1,7 @@
 package com.safetyapp.mainapp;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
-import androidx.security.crypto.EncryptedSharedPreferences;
-import androidx.security.crypto.MasterKey;
-
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 public class PINManager {
     private static final String PREFS_NAME = "MyPrefs";
     private static final String PIN_KEY = "saved_pin";
