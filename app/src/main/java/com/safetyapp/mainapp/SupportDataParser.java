@@ -53,7 +53,19 @@ public class SupportDataParser {
                     String contact = serviceObject.getString("contact");
                     String website = serviceObject.getString("website");
 
-                    resourcesList.add(new SupportResource(name, category, contact, website));
+
+                    // Parse location array if it exists and is not null
+                    List<Double> location = null;
+                    if (serviceObject.has("location") && !serviceObject.isNull("location")) {
+                        JSONArray locationArray = serviceObject.getJSONArray("location");
+                        if (locationArray.length() == 2) {
+                            location = new ArrayList<>();
+                            location.add(locationArray.getDouble(0)); // Latitude
+                            location.add(locationArray.getDouble(1)); // Longitude
+                        }
+                    }
+
+                    resourcesList.add(new SupportResource(name, category, contact, website, location));
                 }
                 supportMap.put(city, resourcesList);
             }
