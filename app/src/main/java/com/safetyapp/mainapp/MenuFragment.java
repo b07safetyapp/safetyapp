@@ -56,14 +56,14 @@ public class MenuFragment extends Fragment {
             Intent i = new Intent(getActivity(), SupportConnectionActivity.class);
             startActivity(i);
         });
-//        btn5.setOnClickListener(v -> {
-//            Intent i = new Intent(getActivity(), Screen5Activity.class);
-//            startActivity(i);
-//        });
-//        btn6.setOnClickListener(v -> {
-//            Intent i = new Intent(getActivity(), Screen6Activity.class);
-//            startActivity(i);
-//        });
+        btn5.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), PlanActivity.class);
+            startActivity(i);
+        });
+        btn6.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), UploadActivity.class);
+            startActivity(i);
+        });
 
         return root;
 

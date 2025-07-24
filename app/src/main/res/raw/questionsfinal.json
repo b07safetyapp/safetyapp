@@ -15,12 +15,61 @@
     },
     "q1": {
       "type": "multi",
-      "label": "Why are you using this app?",
-      "options": ["Relationship", "Journalism", "Family"],
+      "label": "What relationship are you using this app for?",
+      "options": ["Romantic Relationship", "Family"],
       "next": {
-        "Relationship": "q2",
-        "Journalism": "q3",
-        "Family": "q4"
+        "Romantic Relationship": "q1romantic",
+        "Family": "q1family"
+      }
+    },
+    "q1family": {
+      "type": "multi",
+      "label": "How safe do you feel within your family?",
+      "options": ["Very safe", "Safe", "Somewhat safe", "Rarely safe", "Not safe"],
+      "next": {
+        "Very safe": "q2family",
+        "Safe": "q2family",
+        "Somewhat safe": "q2family",
+        "Rarely safe": "q2family",
+        "Not safe": "q2family"
+      }
+    },
+    "q2family": {
+      "type": "multi",
+      "label": "How often do conflicts occur?",
+      "options": ["Often", "Rarely", "Never"],
+      "next": {
+        "Often": "q2familyconflict",
+        "Rarely": "q2familyconflict",
+        "Never": "q2familynoconflict"
+      }
+    },
+    "q2familyconflict": {
+      "type": "text",
+      "label": "What are the main triggers for these conflicts?",
+      "options": [],
+      "next": {
+        "next": "q13"
+      }
+    },
+    "q2familynoconflict": {
+      "type": "text",
+      "label": "How do you keep conflicts low?",
+      "options": [],
+      "next": {
+        "next": "q13"
+      }
+    },
+    "q1romantic": {
+      "type": "multi",
+      "label": "How satisfied with your relationship are you?",
+      "options": ["Very satisfied", "Satisfied", "Somewhat satisfied", "Rarely satisfied", "Not satisfied"],
+      "next": {
+        "Very satisfied": "q2",
+        "Satisfied": "q2",
+        "Somewhat satisfied": "q2",
+        "Rarely satisfied": "q2",
+        "Not satisfied": "q2"
       }
     },
     "q2": {
@@ -30,58 +79,46 @@
       "next": {
         "In relationship": "q3",
         "Leaving": "q3",
-        "Left": "q3"
+        "Left": "q12"
       }
     },
     "q3": {
       "type": "multi",
-      "label": "How satisfied with your relationship are you?",
-      "options": ["1", "2", "3", "4", "5"],
+      "label": "How often do you communicate openly?",
+      "options": ["Often", "Rarely", "Never"],
       "next": {
-        "1": "q4",
-        "2": "q4",
-        "3": "q4",
-        "4": "q4",
-        "5": "q4"
+        "Often": "q4",
+        "Rarely": "q4",
+        "Never": "q4"
       }
     },
     "q4": {
       "type": "multi",
-      "label": "How often do you communicate openly?",
-      "options": ["Often", "Rarely", "Never"],
-      "next": {
-        "Often": "q5",
-        "Rarely": "q5",
-        "Never": "q5"
-      }
-    },
-    "q5": {
-      "type": "multi",
       "label": "How often do conflict occur?",
       "options": ["Often", "Rarely", "Never"],
       "next": {
-        "Often": "q6",
-        "Rarely": "q6",
-        "Never": "q6"
+        "Often": "q4conflict",
+        "Rarely": "q4conflict",
+        "Never": "q4noconflict"
       }
     },
-    "q6": {
+    "q4noconflict": {
       "type": "text",
       "label": "What do you do to keep conflicts low?",
       "options": [],
       "next": {
-        "next": "q7"
+        "next": "q5"
       }
     },
-    "q7": {
+    "q4conflict": {
       "type": "text",
       "label": "What are the main triggers for these conflicts?",
       "options": [],
       "next": {
-        "next": "q8"
+        "next": "q5"
       }
     },
-    "q8": {
+    "q5": {
       "type": "multi",
       "label": "Have you tried counselling?",
       "options": ["Yes", "No"],
@@ -135,6 +172,15 @@
       "label": "Do you have a clear living-arrangements plan?",
       "options": ["Yes", "No"],
       "next": {
+        "Yes": "q131",
+        "No": "q131"
+      }
+    },
+    "q131": {
+      "type": "multi",
+      "label": "Do you have a children?",
+      "options": ["Yes", "No"],
+      "next": {
         "Yes": "q14",
         "No": "q14"
       }
@@ -184,7 +230,7 @@
     },
     "q19": {
       "type": "multi",
-      "label": "How supported do you feel by friends and family?",
+      "label": "How supported do you feel by friends / other family?",
       "options": ["Very", "Somewhat", "Not at all"],
       "next": {
         "Very": "q20",
@@ -208,5 +254,6 @@
         "leave": "leave"
       }
     }
+
   }
 }

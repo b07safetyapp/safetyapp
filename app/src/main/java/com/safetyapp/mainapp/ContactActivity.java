@@ -23,11 +23,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactActivity extends AppCompatActivity {
+public class ContactActivity extends BaseActivity {
     RecyclerView recyclerView;
     ContactAdapter adapter;
     List<Contact> contactList;
     DatabaseReference databaseRef;
+
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_contact;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

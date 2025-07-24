@@ -1,17 +1,18 @@
 package com.safetyapp.mainapp;
 
+
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,12 +27,16 @@ import java.security.GeneralSecurityException;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_settings;
+    }
     private EditText oldPinEditText, newPinEditText, confirmPinEditText;
     private EditText oldPasswordEditText, newPasswordEditText, confirmPasswordEditText;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
-    private Switch notificationsSwitch;
+    private SwitchMaterial notificationsSwitch;
     private Button deleteAccountButton;
 
     private SharedPreferences encryptedPrefs;
@@ -137,6 +142,7 @@ public class SettingsActivity extends AppCompatActivity {
             Toast.makeText(this, "New password and confirmation do not match", Toast.LENGTH_SHORT).show();
             return;
         }
+        setTitle("Settings Page");
 
         user.reauthenticate(EmailAuthProvider.getCredential(user.getEmail(), oldPassword))
                 .addOnSuccessListener(authResult -> {
