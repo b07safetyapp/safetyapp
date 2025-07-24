@@ -6,6 +6,8 @@ import android.os.Environment;
 import android.renderscript.ScriptGroup;
 import android.util.Log;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,9 +33,12 @@ public class QuestionPresenter {
     private Context ctx;
     private JSONObject root;
 
+    private FirebaseAuth mAuth;
+
     public QuestionPresenter(){
         // get context
         this.appcontext = new AppContext();
+        this.mAuth = FirebaseAuth.getInstance();
         try{
             loadquestionsfromjson();
         }catch (Exception e){

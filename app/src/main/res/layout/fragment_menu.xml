@@ -28,17 +28,19 @@
             android:backgroundTint="@color/buttonColor"
             android:text="A"
             android:textSize="12sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title A"
-            android:textStyle="bold"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="4dp"
+            android:text="Login"
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A"
-            android:textSize="12sp"/>
+            android:text="Test for Login"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -155,20 +157,20 @@
             android:id="@+id/button5"
             android:layout_width="60dp"
             android:layout_height="70dp"
-            android:text="D"
+            android:text="Plan"
             android:backgroundTint="@color/buttonColor"
             android:textSize="12sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title D"
+            android:text="Planner"
             android:textStyle="bold"
             android:layout_marginTop="4dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="D"
+            android:text="Plan your next steps"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -189,20 +191,20 @@
             android:layout_width="60dp"
             android:layout_height="70dp"
             android:backgroundTint="@color/buttonColor"
-            android:text="E"
+            android:text="Upload Box"
             android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Title E"
+            android:text="Secure File Storage"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E"
+            android:text="Upload files"
             android:textSize="12sp" />
     </LinearLayout>
 

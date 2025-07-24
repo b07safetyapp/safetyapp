@@ -39,10 +39,11 @@ public class MenuFragment extends Fragment {
         Button btn5 = root.findViewById(R.id.button5);
         Button btn6 = root.findViewById(R.id.button6);
 
-//        btn1.setOnClickListener(v -> {
-//            Intent i = new Intent(getActivity(), Screen1Activity.class);
-//            startActivity(i);
-//        });
+        btn1.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        });
+
         btn2.setOnClickListener(v -> {
             Intent i = new Intent(getActivity(), QuestionaireActivity.class);
             startActivity(i);
@@ -55,14 +56,14 @@ public class MenuFragment extends Fragment {
             Intent i = new Intent(getActivity(), SupportConnectionActivity.class);
             startActivity(i);
         });
-//        btn5.setOnClickListener(v -> {
-//            Intent i = new Intent(getActivity(), Screen5Activity.class);
-//            startActivity(i);
-//        });
-//        btn6.setOnClickListener(v -> {
-//            Intent i = new Intent(getActivity(), Screen6Activity.class);
-//            startActivity(i);
-//        });
+        btn5.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), PlanActivity.class);
+            startActivity(i);
+        });
+        btn6.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), UploadActivity.class);
+            startActivity(i);
+        });
 
         return root;
 

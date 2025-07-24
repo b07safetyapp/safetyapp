@@ -17,13 +17,14 @@ import java.util.*;
 public class SupportConnectionActivity extends BaseActivity {
     @Override
     protected int getContentLayoutId() {
-        return R.layout.activity_home;
+        return R.layout.activity_support_connection;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_support_connection);
+
+        // Temp, will change later
 
         String userCity = "Toronto";
         // read the current city from the saved questionaire json

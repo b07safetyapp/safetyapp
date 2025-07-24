@@ -8,11 +8,16 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class QuestionaireActivity extends AppCompatActivity {
+public class QuestionaireActivity extends BaseActivity {
+
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_questionnaire;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_questionnaire);
         setTitle("Questionaire Activity");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);

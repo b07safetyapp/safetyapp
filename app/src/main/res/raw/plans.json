@@ -1,0 +1,67 @@
+{
+  "FamilyRelationShipBad": {
+    "Criteria" : {
+      "q1" : ["Family"],
+      "q1family" : ["Not safe", "Rarely safe", "Somewhat safe"],
+      "q2family" : ["Often", "Rarely"]
+    },
+    "Tips" : ["Disclose that you do not feel satisfied with this relationship", "Find extended family or friends who can support your during these times"]
+  },
+  "RomanticRelationshipBad": {
+    "Criteria" : {
+      "q1" : ["Romantic Relationship"],
+      "q1romantic" : ["Somewhat satisfied", "Rarely satisfied", "Not satisfied"],
+      "q2" : ["Leaving"]
+    },
+    "Tips" : ["Disclose that you do not feel satisfied with this relationship", "Find family or friends who can support you during these times"]
+  },
+  "RomanticRelationshipLeft": {
+    "Criteria" : {
+      "q2" : ["Left"]
+    },
+    "Tips" : ["Ensure that you remove contact with this person", "Explain why you left this person to a trusted friend, and make sure they can easily contact you"]
+  },
+  "NoHousing": {
+    "Criteria" : {
+      "q13" : ["No"]
+    },
+    "Tips" : ["Ask a trusted person if they are willing to let you stay with them"]
+  },
+  "NoHouseChild": {
+    "Criteria" : {
+      "q13" : ["No"],
+      "q131" : ["Yes"]
+    },
+    "Tips" : ["Ensure your child has access to shelter and clean living facilities", "Hire a nanny if required"]
+  },
+  "NoMediator": {
+    "Criteria" : {
+      "q14" : ["No"]
+    },
+    "Tips" : ["Bookmark resources for a lawyer or mediator within your area"]
+  },
+  "NoFriends": {
+    "Criteria" : {
+      "q19" : ["Not at all"]
+    },
+    "Tips" : ["Join a trusted community for mental and physical health safety. Refer to resources area"]
+  },
+  "NoCommunication": {
+    "Criteria" : {
+      "q3" : ["Rarely", "Never"]
+    },
+    "Tips" : ["Journal down things you wish to say"]
+  },
+  "ManyConflicts": {
+    "Criteria" : {
+      "q4" : ["Often", "Rarely"]
+    },
+    "Tips" : ["Maintain a list of conflict points and provide them to a trusted source"]
+  },
+  "NoCounselling": {
+    "Criteria" : {
+      "q5" : ["No"]
+    },
+    "Tips" : ["Seek a nearby relationship counseller"]
+  }
+}
