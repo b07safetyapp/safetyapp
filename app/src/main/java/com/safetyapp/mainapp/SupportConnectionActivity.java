@@ -25,6 +25,7 @@ public class SupportConnectionActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         // Temp, will change later
+
         String userCity = "Toronto";
         // read the current city from the saved questionaire json
         // open the file and parse into json
