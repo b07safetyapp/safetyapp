@@ -48,13 +48,6 @@ public class UploadActivity extends BaseActivity {
     @SuppressWarnings("FieldCanBeLocal")
     private Button btnAddContact, btnEditContacts;
 
-    // Location
-    @SuppressWarnings("FieldCanBeLocal")
-    private Button btnAddLoc, btnEditLocs;
-    private LatLng selectedLatLng;
-    private GoogleMap mMap;
-    private SearchView mapSearchView;
-
     // Firebase
     private StorageReference storageRef;
     private DatabaseReference dbRef;
@@ -100,85 +93,6 @@ public class UploadActivity extends BaseActivity {
 
         btnAddContact.setOnClickListener(v -> addContact());
         btnEditContacts.setOnClickListener(v -> startActivity(new Intent(this, ContactActivity.class)));
-
-        // Locations
-        btnAddLoc = findViewById(R.id.btnAddLocs);
-        btnEditLocs = findViewById(R.id.btnEditLocs);
-
-        btnAddLoc.setOnClickListener(v -> {
-            if (selectedLatLng == null) {
-                Toast.makeText(this, "Select a location on the map", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            addLocation(selectedLatLng);
-        });
-
-        btnEditLocs.setOnClickListener(v ->
-                        Toast.makeText(this, "Location List screen coming soon", Toast.LENGTH_SHORT).show()
-                //startActivity(new Intent(this, LocationListActivity.class)) // TODO
-        );
-
-        // Setup Map
-        mapSearchView = new SearchView(this);
-        FrameLayout mapFrame = findViewById(R.id.mapFragment);
-        mapFrame.addView(mapSearchView, new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT));
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapFragment);
-
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(googleMap -> {
-                mMap = googleMap;
-
-                mMap.setOnMapClickListener(latLng -> {
-                    selectedLatLng = latLng;
-                    mMap.clear();
-                    mMap.addMarker(new MarkerOptions().position(latLng).title("Safe Location"));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
-                });
-
-                setupSearchView();
-            });
-        }
-    }
-
-    private void setupSearchView() {
-        mapSearchView.setQueryHint("Search location");
-        mapSearchView.setIconifiedByDefault(false);
-        mapSearchView.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
-
-        mapSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                searchLocation(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) { return false; }
-        });
-    }
-
-    private void searchLocation(String query) {
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        try {
-            List<Address> addressList = geocoder.getFromLocationName(query, 1);
-            if (addressList != null && !addressList.isEmpty()) {
-                Address address = addressList.get(0);
-                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                selectedLatLng = latLng;
-
-                mMap.clear();
-                mMap.addMarker(new MarkerOptions().position(latLng).title(query));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-            } else {
-                Toast.makeText(this, "Location not found", Toast.LENGTH_SHORT).show();
-            }
-        } catch (IOException e) {
-            Toast.makeText(this, "Error finding location", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void chooseFile() {
