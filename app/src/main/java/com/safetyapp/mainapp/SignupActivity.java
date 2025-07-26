@@ -185,7 +185,7 @@ public class SignupActivity extends AppCompatActivity {
                     savePinSecurely(pin);
                     Toast.makeText(SignupActivity.this, "PIN saved securely", Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(SignupActivity.this, QuestionaireActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
 

@@ -53,8 +53,8 @@ public class LoginActivity extends AppCompatActivity {
         loginPinButton = findViewById(R.id.loginPinButton);
 
         // Mask inputs after 2s delay
-        setupDelayedMasking(passwordInput);
-        setupDelayedMasking(pinInput);
+        //setupDelayedMasking(passwordInput);
+        //setupDelayedMasking(pinInput);
 
         // Set button actions
         loginEmailButton.setOnClickListener(v -> loginWithEmail());
