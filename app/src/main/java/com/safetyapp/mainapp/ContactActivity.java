@@ -2,6 +2,7 @@ package com.safetyapp.mainapp;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -26,7 +27,7 @@ import java.util.List;
 public class ContactActivity extends BaseActivity {
     RecyclerView recyclerView;
     ContactAdapter adapter;
-    List<Contact> contactList;
+    List<Contact> contactList = new ArrayList<>();
     DatabaseReference databaseRef;
 
     @Override
@@ -46,11 +47,17 @@ public class ContactActivity extends BaseActivity {
 
         databaseRef = FirebaseDatabase.getInstance().getReference("contacts");
 
+        // lets populate the contacts list with everything that is already within the database
+
+
+
         // Realtime listener
         databaseRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.d("Firebase", "Data received, exists: " + snapshot.exists());
+                Log.d("Firebase", "Children count: " + snapshot.getChildrenCount());
                 contactList.clear();
                 for (DataSnapshot contactSnap : snapshot.getChildren()) {
                     Contact contact = contactSnap.getValue(Contact.class);
@@ -63,6 +70,8 @@ public class ContactActivity extends BaseActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Firebase", "Database error: " + error.getMessage());
+                Log.e("Firebase", "Error code: " + error.getCode());
                 Toast.makeText(ContactActivity.this, "Failed to load contacts.", Toast.LENGTH_SHORT).show();
             }
         });

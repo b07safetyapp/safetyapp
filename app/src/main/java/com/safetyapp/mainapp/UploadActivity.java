@@ -171,7 +171,7 @@ public class UploadActivity extends BaseActivity {
         contact.put("name", name);
         contact.put("relationship", rel);
         contact.put("phone", phone);
-
+        // saving into database
         if (id != null) {
             dbRef.child("contacts").child(id).setValue(contact)
                     .addOnSuccessListener(aVoid -> Toast.makeText(this, "Contact added", Toast.LENGTH_SHORT).show())
