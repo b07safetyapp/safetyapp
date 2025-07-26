@@ -7,6 +7,10 @@ import android.renderscript.ScriptGroup;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -34,10 +38,14 @@ public class QuestionPresenter {
     private JSONObject root;
 
     private FirebaseAuth mAuth;
+    private StorageReference storageRef;
+    private DatabaseReference dbRef;
 
     public QuestionPresenter(){
         // get context
         this.appcontext = new AppContext();
+        this.storageRef = FirebaseStorage.getInstance().getReference("users");
+        this.dbRef = FirebaseDatabase.getInstance().getReference();
         this.mAuth = FirebaseAuth.getInstance();
         try{
             loadquestionsfromjson();
